@@ -1,0 +1,180 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ * 
+ */
+
+/*# sourceMappingURL=custom.css.map */
+
+.bg-side-auth{
+    background: #006fe6;
+    flex: 0 0 50%;
+    min-height: 100vh;
+    display: flex;
+    /*position: fixed;*/
+
+}
+.bg-light-primary {
+    background: #e0e3ff;
+}
+.bg-light-success {
+    background: #d4fddc;
+}
+.bg-light-warning {
+    background: #fde8d3;
+}
+.bg-light-danger {
+    background: #fbeff1;
+}
+.bg-carousel {
+    margin: 0 auto;
+}
+.bg-white {
+    background: #ffffff;
+}
+.bg-transparent{
+    background: transparent;
+}
+.navbar-custom {
+    position: relative;
+    left: 0;
+    right: 0;
+    height: 65px;
+}
+.carousel-caption.custom-caption{
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px 50px 20px 50px;
+}
+.card-custom-top{
+	min-height: 400px;
+	max-height: 400px;
+}
+.no-shadow{
+	box-shadow: none;
+}
+.card-icon-custom{
+	line-height: 65px !important;
+	height: 60px !important;
+	width: 60px !important;
+}
+.card-header-custom{
+	border: none !important;
+  /*min-height: 50px !important;*/
+}
+.media-custom {
+    width: 50px;
+    height: 48px;
+    padding: 14px;
+    text-align: center;
+}
+.media-custom i{
+    font-size: 20px;
+}
+.col-auth {
+    height: 100vh; 
+    position: fixed;
+    background: #6777ef;
+}
+.col-spacer-auth {
+    pointer-events: none;
+}
+
+.col-custom {
+    position: absolute;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 4rem;
+    padding-left: 4rem;
+}
+@media (min-width: 860px) {
+    .col-custom {
+        -webkit-box-flex: 0;
+        flex: 0 0 60%;
+        max-width: 60%;
+        padding-left: 8rem;
+    }
+}
+@media (max-width: 767px) {
+	.col-auth{
+		position: relative;
+	}
+    .col-auth.login {
+        position: relative;
+    }
+}
+
+.loading {
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.loaded {
+    opacity: 1;
+}
+
+.spinner-div {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.o-hide {
+    overflow: hidden;
+}
+
+.spinner {
+    width: 70px;
+    margin: 0 auto; 
+
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #006fe6;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+.fc-event-time, .fc-event-title {
+padding: 0 1px;
+white-space: nowrap;
+}
+
+.fc-title {
+white-space: normal;
