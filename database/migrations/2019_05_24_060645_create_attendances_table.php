@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodaysTable extends Migration
+class CreateAttendancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTodaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('todays', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('activity');
-            $table->string('start');
-            $table->string('end');
+            $table->integer('rombel_id')->unsigned();
+            $table->integer('not_present');
             $table->date('date');
-            $table->integer('admin_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateTodaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todays');
+        Schema::dropIfExists('attendances');
     }
 }

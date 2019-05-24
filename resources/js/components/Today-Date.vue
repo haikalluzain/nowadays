@@ -18,7 +18,7 @@
                 <div class="card-header">
                   <h4>Recent Activities</h4>
                   <div class="card-header-form">
-                        <h4 v-if="this.today.date==''">Semua</h4>
+                        <h4 v-if="showall">Semua</h4>
                         <h4 v-else>{{ moment(this.today.date).locale('id').format('dddd, DD MMMM YYYY') }}</h4>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <template v-else>
                         <li class="media" v-for="today in filtered" :key="today.id">
                           <div class="media-body">
-                            <div class="float-right">{{ moment(today.date).locale('id').format('dddd, DD MMMM YYYY') }}</div>
+                            <div v-if="showall" class="float-right">{{ moment(today.date).locale('id').format('dddd, DD MMMM YYYY') }}</div>
                             <div class="media-title text-primary">{{ today.start }}</div>
                             <span class="text-muted">{{ today.activity }}</span>
                           </div>
@@ -54,31 +54,28 @@
 
 <script>
     var moment = require('moment');
+
     export default {
         mounted() {
             if (this.todays.length) {
                 return;
             }
             this.$store.dispatch('getTodays');
-            this.showDate()
+            this.showDate();
+
         },
         data(){
             return {
                 
                 moment:moment,
-                redate: '',
+                showall:false,
+                redate: moment().format('YYYY-MM-DD'),
                 today: {
                     id: '',
                     activity: '',
                     start: '2019-01-25',
                     date: new Date(Date.now()),
                 },
-                highlighter: [
-                            new Date(2019, 0, 5),
-                            new Date(2019, 0, 7),
-                            new Date(2019, 0, 19),
-                            new Date(2019, 0, 25),
-                        ],
 
                 errors_: false,
                 er_message: '',
@@ -127,13 +124,11 @@
                     },
                     {
                         dot: {
-                            backgroundColor: "#6777ef",
+                            backgroundColor: "#ffc107",
                         },
                         dates: [
-                            new Date(2019, 0, 5),
-                            new Date(2019, 0, 7),
-                            new Date(2019, 0, 19),
-                            new Date(2019, 0, 25),
+                            new Date(Date.now())
+                            
                         ]
                     }
                 ],
@@ -142,15 +137,16 @@
         },
         methods: {
             showDate() {
-                console.log(this.$data.highlighter)
+                // console.log(this.what)
             },
             cek(day) {
+                this.showall = false;
                 this.redate = moment(day.dateTime).format('YYYY-MM-DD');
                 // this.$forceUpdate();
                 
             },
             showAll() {
-                this.today.date = '';
+                this.showall = true;
             }
         },
 
@@ -160,7 +156,7 @@
             },
             filtered() {
                 return this.todays.filter((todays) => {
-                    if (this.today.date == '') {
+                    if (this.showall == true) {
                         return todays;
                     }
                     else{

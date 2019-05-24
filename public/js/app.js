@@ -69922,8 +69922,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -69941,15 +69939,13 @@ var moment = __webpack_require__(0);
                 id: '',
                 activity: '',
                 start: '06:00',
-                end: '07:00',
-                date: moment().format('YYYY-MM-DD')
+                end: '07:00'
             },
             edit: {
                 id: '',
                 activity: '',
                 start: '',
-                end: '',
-                date: moment().format('YYYY-MM-DD')
+                end: ''
             },
             errors_: false,
             er_message: '',
@@ -70292,32 +70288,6 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.edit.date,
-                                      expression: "edit.date"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "hidden", required: "" },
-                                  domProps: { value: _vm.edit.date },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.edit,
-                                        "date",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
                                       value: _vm.edit.id,
                                       expression: "edit.id"
                                     }
@@ -70491,28 +70461,6 @@ var render = function() {
                                 return
                               }
                               _vm.$set(_vm.today, "end", $event.target.value)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.today.date,
-                              expression: "today.date"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "hidden", required: "" },
-                          domProps: { value: _vm.today.date },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.today, "date", $event.target.value)
                             }
                           }
                         }),
@@ -70714,6 +70662,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 var moment = __webpack_require__(0);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         if (this.todays.length) {
@@ -70726,14 +70675,14 @@ var moment = __webpack_require__(0);
         return {
 
             moment: moment,
-            redate: '',
+            showall: false,
+            redate: moment().format('YYYY-MM-DD'),
             today: {
                 id: '',
                 activity: '',
                 start: '2019-01-25',
                 date: new Date(Date.now())
             },
-            highlighter: [new Date(2019, 0, 5), new Date(2019, 0, 7), new Date(2019, 0, 19), new Date(2019, 0, 25)],
 
             errors_: false,
             er_message: '',
@@ -70778,9 +70727,9 @@ var moment = __webpack_require__(0);
                 dates: [new Date(Date.now())]
             }, {
                 dot: {
-                    backgroundColor: "#6777ef"
+                    backgroundColor: "#ffc107"
                 },
-                dates: [new Date(2019, 0, 5), new Date(2019, 0, 7), new Date(2019, 0, 19), new Date(2019, 0, 25)]
+                dates: [new Date(Date.now())]
             }],
             formats: { input: 'YYYY-MM-DD' }
         };
@@ -70788,14 +70737,15 @@ var moment = __webpack_require__(0);
 
     methods: {
         showDate: function showDate() {
-            console.log(this.$data.highlighter);
+            // console.log(this.what)
         },
         cek: function cek(day) {
+            this.showall = false;
             this.redate = moment(day.dateTime).format('YYYY-MM-DD');
             // this.$forceUpdate();
         },
         showAll: function showAll() {
-            this.today.date = '';
+            this.showall = true;
         }
     },
 
@@ -70807,7 +70757,7 @@ var moment = __webpack_require__(0);
             var _this = this;
 
             return this.todays.filter(function (todays) {
-                if (_this.today.date == '') {
+                if (_this.showall == true) {
                     return todays;
                 } else {
                     return todays.date.match(_this.redate);
@@ -70870,7 +70820,7 @@ var render = function() {
             _c("h4", [_vm._v("Recent Activities")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-header-form" }, [
-              this.today.date == ""
+              _vm.showall
                 ? _c("h4", [_vm._v("Semua")])
                 : _c("h4", [
                     _vm._v(
@@ -70901,16 +70851,18 @@ var render = function() {
                   : _vm._l(_vm.filtered, function(today) {
                       return _c("li", { key: today.id, staticClass: "media" }, [
                         _c("div", { staticClass: "media-body" }, [
-                          _c("div", { staticClass: "float-right" }, [
-                            _vm._v(
-                              _vm._s(
-                                _vm
-                                  .moment(today.date)
-                                  .locale("id")
-                                  .format("dddd, DD MMMM YYYY")
-                              )
-                            )
-                          ]),
+                          _vm.showall
+                            ? _c("div", { staticClass: "float-right" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm
+                                      .moment(today.date)
+                                      .locale("id")
+                                      .format("dddd, DD MMMM YYYY")
+                                  )
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "div",

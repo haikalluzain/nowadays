@@ -30,9 +30,12 @@ Route::group(['prefix' => 'today'], function() {
 	Route::post('insert', 'TodayController@store');
     Route::post('update', 'TodayController@update');
     Route::delete('delete/{id}', 'TodayController@destroy');
+	Route::get('what', 'TodayController@what');
 });
 
 Route::group(['prefix' => 'user'], function() {
 	Route::get('show', 'UserController@show_admin');
 	Route::post('add-admin', 'UserController@store_admin');
 });
+
+Route::post('rombel/check','RombelController@rombel');
