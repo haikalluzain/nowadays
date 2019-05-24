@@ -136,7 +136,7 @@
 				                msg: 'Konfirmasi password tidak cocok!'
 				            })
 						}else{
-							axios.post('/Laravel/nowadays/public/api/user/add-admin', this.$data.admin)
+							axios.post('/nowadays/public/api/user/add-admin', this.$data.admin)
 							.then((response) =>{
 								if (response.data.code == 200) {
 									$('#modal').modal('hide');
