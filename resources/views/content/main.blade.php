@@ -145,8 +145,8 @@
                         Create one <i class="fas fa-plus"></i>
                       </a>
                     @else
-                      <a href="{{ route('today.date') }}" class="btn btn-primary btn-round">
-                        View all
+                      <a href="{{ route('today.list') }}" class="btn btn-primary btn-round">
+                        Add <i class="fas fa-plus"></i>
                       </a>
                     @endif
                   </div>

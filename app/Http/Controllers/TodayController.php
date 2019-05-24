@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 
 use App\Today;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class TodayController extends Controller
      */
     public function index()
     {
+        $now = date('Y-m-d');
         $show = Today::latest()->get();
         return response()->json(['todays' => $show]);
     }
@@ -32,6 +34,12 @@ class TodayController extends Controller
     public function create()
     {
         //
+    }
+
+    public function what()
+    {
+        $what = 'new Date(2019, 4, 5)';
+        return response()->json(['what'=>$what]);
     }
 
     /**
@@ -64,7 +72,7 @@ class TodayController extends Controller
     public function show()
     {
         $now = date('Y-m-d');
-        $show = Today::where('tanggal', $now)->orderBy('mulai', 'asc')->get();
+        $show = Today::where('date', $now)->orderBy('start', 'asc')->get();
         return response()->json(['todays' => $show]);
     }
 
@@ -95,7 +103,7 @@ class TodayController extends Controller
             'activity' => request('activity'),
             'start' => request('start'),
             'end' => request('end'),
-            'date' => request('date'),
+            'date' => Carbon::now(),
             'admin_id' => auth('api')->user()->id,
         ]);
 

@@ -50,7 +50,6 @@
                                         <div class="input-group">
                                             <input type="time" class="form-control" v-model="edit.start" required="">
                                             <input type="time" class="form-control" v-model="edit.end" required="" style="border-radius: 0px 5px 5px 0px">
-                                            <input type="hidden" class="form-control" v-model="edit.date" required="">
                                             <input type="hidden" class="form-control" v-model="edit.id" required="">
 
                                             <div class="ml-2">
@@ -93,7 +92,6 @@
                                         <div class="input-group">
                                             <input type="time" class="form-control" v-model="today.start" required="">
                                             <input type="time" class="form-control" v-model="today.end" required="" style="border-radius: 0px 5px 5px 0px">
-                                            <input type="hidden" class="form-control" v-model="today.date" required="">
                                             <button type="submit" class="ml-4 btn btn-primary" @click.prevent="add">Tambah</button>
                                         </div>
                                     </div>
@@ -142,14 +140,12 @@
                     activity: '',
                     start: '06:00',
                     end: '07:00',
-                    date: moment().format('YYYY-MM-DD'),
                 },
                 edit: {
                     id: '',
                     activity: '',
                     start: '',
                     end: '',
-                    date: moment().format('YYYY-MM-DD'),  
                 },
                 errors_: false,
                 er_message: '',

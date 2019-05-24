@@ -18,8 +18,8 @@ class CreateTodaysTable extends Migration
             $table->string('activity');
             $table->string('start');
             $table->string('end');
-            $table->dateTime('date');
-            $table->string('admin_id');
+            $table->date('date');
+            $table->integer('admin_id')->unsigned();
             $table->timestamps();
         });
     }

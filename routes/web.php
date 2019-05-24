@@ -30,4 +30,12 @@ Route::middleware('auth')->group(function () {
 	Route::get('thumbnail/active','ThumbnailController@active')->name('thumbnail.active');
 	Route::get('thumbnail/inactive','ThumbnailController@inactive')->name('thumbnail.inactive');
 	Route::resource('thumbnail','ThumbnailController');
+
+	Route::get('attendance/all','AttendanceController@all')->name('attendance.all');
+
+	Route::resources([
+		'major'=>'MajorController',
+		'rombel'=>'RombelController',
+		'attendance'=>'AttendanceController'
+	]);
 });
