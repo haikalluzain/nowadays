@@ -2543,7 +2543,7 @@ a.bb {
 }
 
 .text-small {
-  font-size: 12px;
+  font-size: 12px !important;
   line-height: 20px;
 }
 

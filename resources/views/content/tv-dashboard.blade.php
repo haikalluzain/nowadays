@@ -5,13 +5,13 @@
 
 	<nav class="navbar navbar-custom bg-primary justify-content-center">
         <a class="navbar-brand" href="#"></a>
-        <a class="navbar-brand" href="#"><img class="pb-1" width="55" height="40" src="{{ asset('image/logo/logo-white.png') }}" alt=""> <span class="ml-1">Wikrama Nowadays</span></a>
+        <a class="navbar-brand" href="#"><img class="pb-1" width="55" height="40" src="{{ asset('image/logo/logo-white.png') }}" alt=""> <span class="ml-1">Wikrama Today</span></a>
         <a class="navbar-brand" href="#"></a>
     </nav>
 
 	<div class="container-fluid col-auth">
 		<section>
-			<div class="card shadow">
+			<div class="card shadow ml-3">
 				<div class="row">
 	            	<div class="col-lg-6 pr-0">
 	              		<div class="card no-shadow card-custom-top mb-0 bg-primary" style="border-right:1px solid #dee2e6 !important;border-bottom: 1px solid #dee2e6 !important; border-radius: 0px 0px 0px 0px !important;">
@@ -25,7 +25,7 @@
 			                        <div class="carousel-inner" style="border-radius: 5px 0px 0px 0px !important;">
 			                            @if(count($thum) < 1)
 											<div class="carousel-item active">
-	                                            <img class="d-block" width="667" height="400" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
+	                                            <img class="d-block" width="550" height="400" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
 	                                            <div class="carousel-caption custom-caption">
 	                                                <h5>Title</h5>
 	                                                <p>Description of the event</p>
@@ -34,7 +34,7 @@
 			                            @else
 											@foreach($thum as $field)
 		                                        <div class="carousel-item {{ $loop->index == 0 ? 'active': '' }}">
-		                                            <img class="d-block" width="667" height="400" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
+		                                            <img class="d-block" width="550" height="400" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
 		                                            <div class="carousel-caption custom-caption">
 		                                                <h5>{{ $field->title }}</h5>
 		                                                <p>{{ str_limit($field->content, $limit = 200, $end = '...') }}</p>
@@ -82,7 +82,7 @@
 				                            		<div class="col-3 pr-0">
 				                            			<div class="h6 text-primary font-weight-bold mb-0">{{ $data->start }} - {{ $data->end }}</div>
 				                            		</div>
-				                            		<div class="col-9 pl-0">
+				                            		<div class="col-9 pl-3">
 				                            			<span class="text-muted">{{ str_limit($data->activity, $limit = 112, $end = '...') }}</span>
 				                            		</div>
 				                          		</div>
@@ -122,46 +122,46 @@
 			                </div>
 			                <div class="card-body pt-0">             
 			                  	<div class="row">
-			                  		<div class="col-4 px-0 pl-3">
+			                  		<div class="col-4 px-0 pl-1">
 				                  		<div class="card card-statistic-1 no-shadow">
 							                <div class="card-icon shadow card-icon-custom bg-primary">
 							                  	<i class="far fa-user"></i>
 							                </div>
 							                <div class="card-wrap">
-							                  	<div class="card-header">
-							                   		<h4>Total Siswa</h4>
+							                  	<div class="card-header p-0 pt-4">
+							                   		<h4 class="text-small">Total Siswa</h4>
 							                  	</div>
-							                  	<div class="card-body">
+							                  	<div class="card-body p-0">
 							                    	100
 							                  	</div>
 							                </div>
 							            </div>
 				                  	</div>
-				                  	<div class="col-4 px-0 pl-3">
+				                  	<div class="col-4 px-0 pl-1">
 				                  		<div class="card card-statistic-1 no-shadow">
 							                <div class="card-icon shadow card-icon-custom bg-success">
 							                  	<i class="far fa-user"></i>
 							                </div>
 							                <div class="card-wrap">
-							                  	<div class="card-header">
-							                   		<h4>Siswa Hadir</h4>
+							                  	<div class="card-header p-0 pt-4">
+							                   		<h4 class="text-small">Siswa Hadir</h4>
 							                  	</div>
-							                  	<div class="card-body">
+							                  	<div class="card-body p-0">
 							                    	1
 							                  	</div>
 							                </div>
 							            </div>
 				                  	</div>
-				                  	<div class="col-4 px-0 pl-3">
+				                  	<div class="col-4 px-0 px-1">
 				                  		<div class="card card-statistic-1 no-shadow">
 							                <div class="card-icon shadow card-icon-custom bg-danger">
 							                  	<i class="far fa-user"></i>
 							                </div>
 							                <div class="card-wrap">
-							                  	<div class="card-header">
-							                   		<h4>Tidak hadir</h4>
+							                  	<div class="card-header p-0 pt-4">
+							                   		<h4 class="text-small">Tidak hadir</h4>
 							                  	</div>
-							                  	<div class="card-body">
+							                  	<div class="card-body p-0">
 							                    	99
 							                  	</div>
 							                </div>
@@ -212,24 +212,9 @@
 	</div>
 
 <script type="text/javascript">
-	// window.onload = maxWindow;
-
-	// function maxWindow(){
-	// 	window.moveTo(0, 0);
-
-	// 	if (document.all) {
-	// 		top.window.resizeTo(screen.availWidth, screen.availHeight);
-	// 	}
-	// 	else if (document.layers || document.getElementById) {
-	// 		if (top.window.outerHeight < screen.availHeight || top.window.outerWidth < screen.availWidth) {
-	// 			top.window.outerHeight = screen.availHeight;
-	// 			top.window.outerWidth < screen.availWidth;
-	// 		}
-	// 	}
-	// }
 	setTimeout(function() {
 		location.reload()
-	},15 * 60 * 1000)
+	},3 * 60 * 1000)
 </script>
 
 @endsection
