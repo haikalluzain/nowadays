@@ -51,7 +51,7 @@
               <input type="text" class="form-control" id="rombel" disabled="" value="">
 
               <span class="text-small">
-                *Nama rombel akan otomatis terbuat sesuai jurusan dan kelas yang telah
+                * Nama rombel akan otomatis terbuat sesuai jurusan dan tingkat yang telah dipilih 
               </span>
             </div>
             

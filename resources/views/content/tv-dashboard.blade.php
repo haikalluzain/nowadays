@@ -5,7 +5,7 @@
 
 	<nav class="navbar navbar-custom bg-primary justify-content-center">
         <a class="navbar-brand" href="#"></a>
-        <a class="navbar-brand" href="#"><img class="pb-1" width="55" height="40" src="{{ asset('image/logo/logo-white.png') }}" alt=""> <span class="ml-1">Wikrama Today</span></a>
+        <a class="navbar-brand" href="#"><img class="pb-1" width="55" height="40" src="{{ asset('image/logo/logo-white.png') }}" alt=""> <span class="ml-1">Wikrama Nowadays</span></a>
         <a class="navbar-brand" href="#"></a>
     </nav>
 
@@ -25,7 +25,7 @@
 			                        <div class="carousel-inner" style="border-radius: 5px 0px 0px 0px !important;">
 			                            @if(count($thum) < 1)
 											<div class="carousel-item active">
-	                                            <img class="d-block" width="550" height="400" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
+	                                            <img class="d-block" width="540" height="400" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
 	                                            <div class="carousel-caption custom-caption">
 	                                                <h5>Title</h5>
 	                                                <p>Description of the event</p>
@@ -34,7 +34,7 @@
 			                            @else
 											@foreach($thum as $field)
 		                                        <div class="carousel-item {{ $loop->index == 0 ? 'active': '' }}">
-		                                            <img class="d-block" width="550" height="400" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
+		                                            <img class="d-block" width="540" height="400" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
 		                                            <div class="carousel-caption custom-caption">
 		                                                <h5>{{ $field->title }}</h5>
 		                                                <p>{{ str_limit($field->content, $limit = 200, $end = '...') }}</p>
@@ -62,7 +62,7 @@
 			                <div class="card-header card-header-custom">
 			                  	<h4>Aktivitas Hari ini</h4>
 			                  	<div class="card-header-form">
-			                        <h4>{{ date('l, j F Y') }}</h4>
+			                        <h4>{{ $now }}</h4>
 			                    </div>
 			                </div>
 			                <div class="card-body pt-0" id="top-5-scroll">             
@@ -129,10 +129,10 @@
 							                </div>
 							                <div class="card-wrap">
 							                  	<div class="card-header p-0 pt-4">
-							                   		<h4 class="text-small">Total Siswa</h4>
+							                   		<h4 class="text-small p-0">Total Siswa</h4>
 							                  	</div>
 							                  	<div class="card-body p-0">
-							                    	100
+							                    	{{ $total }}
 							                  	</div>
 							                </div>
 							            </div>
@@ -144,10 +144,10 @@
 							                </div>
 							                <div class="card-wrap">
 							                  	<div class="card-header p-0 pt-4">
-							                   		<h4 class="text-small">Siswa Hadir</h4>
+							                   		<h4 class="text-small p-0">Siswa Hadir</h4>
 							                  	</div>
 							                  	<div class="card-body p-0">
-							                    	1
+							                    	{{ $present }}
 							                  	</div>
 							                </div>
 							            </div>
@@ -159,10 +159,10 @@
 							                </div>
 							                <div class="card-wrap">
 							                  	<div class="card-header p-0 pt-4">
-							                   		<h4 class="text-small">Tidak hadir</h4>
+							                   		<h4 class="text-small p-0">Tidak hadir</h4>
 							                  	</div>
 							                  	<div class="card-body p-0">
-							                    	99
+							                    	{{ $not_present }}
 							                  	</div>
 							                </div>
 							            </div>
@@ -173,31 +173,31 @@
 						                  	<div class="card-stats-items">
 						                    	<div class="card-stats-item">
 						                      		<div class="font-weight-bold">RPL</div>
-						                      		<div class="card-stats-item-label">1</div>
+						                      		<div class="card-stats-item-label">{{ $rpl }}</div>
 						                    	</div>
 						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">APK</div>
-						                      		<div class="card-stats-item-label">0</div>
+						                      		<div class="font-weight-bold">OTKP</div>
+						                      		<div class="card-stats-item-label">{{ $otkp }}</div>
 						                    	</div>
 						                    	<div class="card-stats-item">
 						                      		<div class="font-weight-bold">TKJ</div>
-						                      		<div class="card-stats-item-label">0</div>
+						                      		<div class="card-stats-item-label">{{ $tkj }}</div>
 						                    	</div>
 						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">PMN</div>
-						                      		<div class="card-stats-item-label">0</div>
+						                      		<div class="font-weight-bold">BDP</div>
+						                      		<div class="card-stats-item-label">{{ $bdp }}</div>
 						                    	</div>
 						                    	<div class="card-stats-item">
 						                      		<div class="font-weight-bold">MMD</div>
-						                      		<div class="card-stats-item-label">0</div>
+						                      		<div class="card-stats-item-label">{{ $mmd }}</div>
 						                    	</div>
 						                    	<div class="card-stats-item">
 						                      		<div class="font-weight-bold">HTL</div>
-						                      		<div class="card-stats-item-label">0</div>
+						                      		<div class="card-stats-item-label">{{ $htl }}</div>
 						                    	</div>
 						                    	<div class="card-stats-item">
 						                      		<div class="font-weight-bold">TBG</div>
-						                      		<div class="card-stats-item-label">0</div>
+						                      		<div class="card-stats-item-label">{{ $tbg }}</div>
 						                    	</div>
 						                  	</div>
 						                </div>

@@ -67,6 +67,7 @@ class AttendanceController extends Controller
 
         $absen = new Attendance($request->all());
         $absen->date = Carbon::now();
+        $absen->major_id = $rombel->major_id;
         $absen->save();
 
         return redirect()->route('attendance.index')->with('message','menyimpan absen');

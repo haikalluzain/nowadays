@@ -25,7 +25,7 @@
           <div class="form-group row">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Rombel</label>
             <div class="col-sm-12 col-md-7">
-              <select name="rombel_id" class="form-control">
+              <select name="rombel_id" class="form-control" required="">
                 <option value="">- Pilih Rombel -</option>
                 @foreach($rombels as $rombel)
                   <option value="{{ $rombel->id }}">{{ $rombel->alias }}</option>
@@ -45,7 +45,7 @@
           <div class="form-group row">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Siswa tidak masuk</label>
             <div class="col-sm-12 col-md-7">
-              <input type="number" class="form-control" name="not_present">
+              <input type="number" class="form-control" name="not_present" required="">
             </div>
           </div>
 

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 
 use App\User;
 use App\Today;
+use App\Event;
 use App\Major;
 use App\Rombel;
 
@@ -28,10 +29,13 @@ class DatabaseSeeder extends Seeder
             'password'=>Hash::make('123456'),
         ]);
 
-        Major::create([
-            'name' => 'Rekayasa Perangkat Lunak',
-            'alias' => 'RPL'
-        ]);
+        $major = [['Rekayasa Perangkat Lunak','RPL'],['Otomatisasi Teknik Kerja Perkantoran','OTKP'],['Teknik Komputer dan Jaringan','TKJ'],['Bisnis Daring dan Pemasaran','BDP'],['Multimedia','MMD'],['Perhotelan','HTL'],['Tata Boga','TBG']];
+        for ($i=0; $i < 7; $i++) { 
+            Major::create([
+                'name' => $major[$i][0],
+                'alias' => $major[$i][1]
+            ]);
+        }
 
         Rombel::create([
             'major_id' => 1,
@@ -61,5 +65,14 @@ class DatabaseSeeder extends Seeder
         		'admin_id' => 1
         	]);
         }
+
+        Event::create([
+            'title' => 'Kegiatan belajar mengajar minggu genap',
+            'description' => 'Kegiatan belajar mengajar minggu genap',
+            'start' => Carbon::now()->subDays(2),
+            'end' => Carbon::now()->addDays(3),
+            'color' => '#6777ef',
+            'admin_id' => 1
+        ]);
     }
 }
