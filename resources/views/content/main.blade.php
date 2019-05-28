@@ -15,11 +15,27 @@
                   <i class="far fa-user"></i>
                 </div>
                 <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Total Admin</h4>
+                  <div class="card-header px-0">
+                    <h4>Total Siswa</h4>
                   </div>
                   <div class="card-body">
-                    10
+                    {{ $total }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-success">
+                  <i class="fas fa-circle"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header px-0">
+                    <h4>Siswa hadir</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $present }}
                   </div>
                 </div>
               </div>
@@ -30,41 +46,26 @@
                   <i class="far fa-newspaper"></i>
                 </div>
                 <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>News</h4>
+                  <div class="card-header px-0">
+                    <h4>Jadwal Hari ini</h4>
                   </div>
                   <div class="card-body">
-                    42
+                    {{ count($today) }}
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
-                <div class="card-icon bg-warning">
+                <div class="card-icon bg-info">
                   <i class="far fa-file"></i>
                 </div>
                 <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Reports</h4>
+                  <div class="card-header px-0">
+                    <h4>Kegiatan Sekolah</h4>
                   </div>
                   <div class="card-body">
-                    1,201
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-              <div class="card card-statistic-1">
-                <div class="card-icon bg-success">
-                  <i class="fas fa-circle"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Online Users</h4>
-                  </div>
-                  <div class="card-body">
-                    47
+                    {{ $event }}
                   </div>
                 </div>
               </div>

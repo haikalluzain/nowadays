@@ -22,9 +22,14 @@ class DashboardController extends Controller
     {
         $now = date('Y-m-d');
         $today = Today::where('date', $now)->orderBy('start', 'asc')->get();
+        $total = Rombel::sum('student_total');
+        $not_present = Attendance::where('date', $now)->sum('not_present');
         return view('content.main', [
             'today' => $today,
-            'thum' => Thumbnail::where('status','active')->orderBy('updated_at','desc')->get()
+            'thum' => Thumbnail::where('status','active')->orderBy('updated_at','desc')->get(),
+            'total' => $total,
+            'present' => $total - $not_present,
+            'event' => Event::count(),
         ]);
     }
 
@@ -48,18 +53,6 @@ class DashboardController extends Controller
         $today = Today::where('date', $now)->orderBy('start', 'asc')->get();
 
         $attendance = MajorAttendance::where('date',$now)->latest()->get();
-
-        // RPL
-        // $major_rpl_id = Major::where('alias','RPL');
-        // $total_rpl = 0;
-        // if ($major_rpl_id->count() > 0) {
-        //     $attendance = Attendance::where(['major_id' => $major_rpl_id->first()->id, 'date'=> $now])->count();
-        //     if ($attendance > 0) {
-        //         $rombel_rpl = Rombel::where('major_id',$major_rpl_id->first()->id)->sum('student_total');
-        //         $rpl = Attendance::where(['date'=>$now,'major_id' => $major_rpl_id->first()->id])->sum('not_present');
-        //         $total_rpl = $rombel_rpl - $rpl;
-        //     }
-        // }
 
         return view('content.tv-dashboard', [
             'today' => $today,
