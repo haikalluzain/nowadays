@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Major;
+use App\MajorAttendance;
 use App\Rombel;
 use Illuminate\Http\Request;
 
@@ -94,7 +95,8 @@ class MajorController extends Controller
     public function destroy(Major $major)
     {
         $cek = Rombel::where('major_id',$major->id)->count();
-        if ($cek > 0) {
+        $cekatt = MajorAttendance::where('major_id',$major->id)->count();
+        if ($cek > 0 || $cekatt > 0) {
             return redirect()->route('major.index')->withError('Data jurusan telah digunakan sehingga tidak dapat dihapus!');    
         }else{
             $major->delete();

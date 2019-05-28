@@ -65,7 +65,9 @@ class RombelController extends Controller
      */
     public function edit(Rombel $rombel)
     {
-        //
+        return view('content.rombel.edit',[
+            'data' => $rombel
+        ]);
     }
 
     /**
@@ -77,7 +79,9 @@ class RombelController extends Controller
      */
     public function update(Request $request, Rombel $rombel)
     {
-        //
+        Rombel::find($rombel->id)->update($request->except('_method','_token'));
+
+        return redirect()->route('rombel.index')->with('message','mengubah data rombel');
     }
 
     /**

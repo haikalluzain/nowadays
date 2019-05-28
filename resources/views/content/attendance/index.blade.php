@@ -22,7 +22,7 @@
 
             <div class="card shadow">
                 <div class="card-header">
-                    <h4>Absen hari ini, {{ date('j F Y') }} <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle ml-2" aria-expanded="false">Filter</a>
+                    <h4>Absen hari ini, {{ Date::now()->format('j F Y') }} <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle ml-2" aria-expanded="false">Filter</a>
                     <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-left">
                       <li class="dropdown-title">Pilih data</li>
                       <li><a href="{{ route('attendance.index') }}" class="dropdown-item {{ $route == 'attendance.index' ? 'active' : '' }}">Hari ini</a></li>
@@ -57,7 +57,7 @@
                                     <td>{{ $field->rombel->student_total - $field->not_present }}</td>
                                     <td>{{ $field->not_present }}</td>
                                     <td>
-                                        <a href="{{ route('attendance.edit', $field) }}" class="btn btn-icon btn-primary"><i class="fas fa-pen"></i></a>
+                                        {{-- <a href="{{ route('attendance.edit', $field) }}" class="btn btn-icon btn-primary"><i class="fas fa-pen"></i></a> --}}
                                         <a href="{{ route('attendance.destroy', $field->id) }}" class="btn btn-icon btn-danger delete-btn"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
