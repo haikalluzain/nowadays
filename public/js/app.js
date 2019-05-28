@@ -71842,20 +71842,20 @@ var moment = __webpack_require__(0);
 						click: function click() {
 							_this.openAddForm();
 						}
-					},
-					list: {
-						text: 'Event List',
-						click: function click() {
-							_this.openList();
-						}
 					}
+					// list: {
+					// 	text: 'Event List',
+					// 	click: () => {
+					// 		this.openList()
+					// 	}
+					// }
 				}
 
 			},
 			header: {
 				left: 'prev,next add',
 				center: 'title',
-				right: 'month,list'
+				right: 'month'
 			},
 			eventSources: [{
 				events: function events(start, end, timezone, callback) {
@@ -72618,138 +72618,6 @@ var render = function() {
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade show",
-        attrs: { tabindex: "-1", role: "dialog", id: "modal-list" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog modal-md", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(4),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "modal-body" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.filter,
-                        expression: "filter"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Search" },
-                    domProps: { value: _vm.filter },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.filter = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  !_vm.filtered.length
-                    ? [
-                        _c("div", { staticClass: "mt-4 alert alert-light" }, [
-                          _vm._v("Data tidak ditemukan")
-                        ])
-                      ]
-                    : [
-                        _c(
-                          "ul",
-                          {
-                            staticClass:
-                              "mt-4 list-unstyled list-unstyled-border"
-                          },
-                          _vm._l(_vm.filtered, function(event) {
-                            return _c(
-                              "li",
-                              { key: event.id, staticClass: "media" },
-                              [
-                                _c("div", { staticClass: "media-body" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "float-right text-muted" },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm
-                                            .moment(event.start)
-                                            .locale("id")
-                                            .format("LL")
-                                        )
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "media-title text-primary",
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          _vm.eventClick(event)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(event.title))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "div" }),
-                                  _vm._v(" "),
-                                  _c("span", [
-                                    _vm._v(_vm._s(event.description))
-                                  ])
-                                ])
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      ]
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer pt-0" }, [
-                _c("div", { staticClass: "m-auto" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary btn-shadow",
-                      attrs: { id: "" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.openAddForm($event)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-plus" }),
-                      _vm._v("\n\t\t\t\t\t\t\tNew Event")
-                    ]
-                  )
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
     )
   ])
 }
@@ -72813,27 +72681,6 @@ var staticRenderFns = [
           "\n\n\t\t\t\t\t\t\t\tPilih tanggal mulai dan selesai pada kalender!\n\t\t\t\t\t\t\t"
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [_vm._v("Event List")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
     ])
   }
 ]

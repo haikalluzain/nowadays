@@ -146,7 +146,7 @@
 			</div>
 		</div>
 
-		<div class="modal fade show" tabindex="-1" role="dialog" id="modal-list">
+		<!-- <div class="modal fade show" tabindex="-1" role="dialog" id="modal-list">
 			<div class="modal-dialog modal-md" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -184,7 +184,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -218,19 +218,19 @@
 								this.openAddForm()
 							}
 						},
-						list: {
-							text: 'Event List',
-							click: () => {
-								this.openList()
-							}
-						}
+						// list: {
+						// 	text: 'Event List',
+						// 	click: () => {
+						// 		this.openList()
+						// 	}
+						// }
 					}
 
 				},
 				header: {
 					left: 'prev,next add',
 					center: 'title',
-					right: 'month,list'
+					right: 'month'
 				},
 				eventSources: [
 					{

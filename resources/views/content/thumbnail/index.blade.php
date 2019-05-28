@@ -99,15 +99,25 @@
                                     @endforeach
                                 </ol>
                                 <div class="carousel-inner" style="border-radius: 5px 5px 5px 5px !important;">
-                                    @foreach($thum as $field)
-                                        <div class="carousel-item {{ $loop->index == 0 ? 'active': '' }}">
-                                            <img class="d-block" width="500" height="300" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
-                                            <div class="carousel-caption custom-caption">
-                                                <h5>{{ $field->title }}</h5>
-                                                <p>{{ str_limit($field->content, $limit = 90, $end = '...') }}</p>
+                                    @if(count($thum) < 1)
+                                    <div class="carousel-item active">
+                                      <img class="d-block" width="450" height="300" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
+                                              <div class="carousel-caption custom-caption">
+                                                  <h5>Title</h5>
+                                                  <p>Description of the event</p>
+                                              </div>
+                                          </div>
+                                     @else
+                                        @foreach($thum as $field)
+                                            <div class="carousel-item {{ $loop->index == 0 ? 'active': '' }}">
+                                                <img class="d-block" width="450" height="300" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
+                                                <div class="carousel-caption custom-caption">
+                                                    <h5>{{ $field->title }}</h5>
+                                                    <p>{{ str_limit($field->content, $limit = 90, $end = '...') }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                                 @if(count($thum) > 1)
                                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">

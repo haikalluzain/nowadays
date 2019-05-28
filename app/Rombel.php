@@ -10,6 +10,6 @@ class Rombel extends Model
 
     public function major()
     {
-    	return $this->hasOne('App\Major','id','major_id');
+    	return $this->belongsTo('App\Major','major_id','id');
     }
 }
