@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Major;
+use App\Rombel;
 use Illuminate\Http\Request;
 
 class MajorController extends Controller
@@ -92,7 +93,13 @@ class MajorController extends Controller
      */
     public function destroy(Major $major)
     {
-        $major->delete();
-        return redirect()->route('major.index')->with('message','menghapus jurusan');
+        $cek = Rombel::where('major_id',$major->id)->count();
+        if ($cek > 0) {
+            return redirect()->route('major.index')->withError('Data jurusan telah digunakan sehingga tidak dapat dihapus!');    
+        }else{
+            $major->delete();
+            return redirect()->route('major.index')->with('message','menghapus jurusan');    
+        }
+        
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Major;
 use App\Rombel;
+use App\Attendance;
 use Illuminate\Http\Request;
 
 class RombelController extends Controller
@@ -87,7 +88,13 @@ class RombelController extends Controller
      */
     public function destroy(Rombel $rombel)
     {
-        //
+        $cek = Attendance::where('rombel_id',$rombel->id)->count();
+        if ($cek > 0) {
+            return redirect()->route('rombel.index')->withError('Data rombel telah digunakan sehingga tidak dapat dihapus!');
+        }else{
+            $rombel->delete();
+            return redirect()->route('rombel.index')->with('message','menghapus rombel');
+        }
     }
 
     public function rombel(Request $request)

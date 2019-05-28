@@ -171,34 +171,12 @@
 				                  	<div class="card no-shadow card-statistic-2 mb-0">
 						                <div class="card-stats">
 						                  	<div class="card-stats-items">
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">RPL</div>
-						                      		<div class="card-stats-item-label">{{ $rpl }}</div>
-						                    	</div>
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">OTKP</div>
-						                      		<div class="card-stats-item-label">{{ $otkp }}</div>
-						                    	</div>
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">TKJ</div>
-						                      		<div class="card-stats-item-label">{{ $tkj }}</div>
-						                    	</div>
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">BDP</div>
-						                      		<div class="card-stats-item-label">{{ $bdp }}</div>
-						                    	</div>
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">MMD</div>
-						                      		<div class="card-stats-item-label">{{ $mmd }}</div>
-						                    	</div>
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">HTL</div>
-						                      		<div class="card-stats-item-label">{{ $htl }}</div>
-						                    	</div>
-						                    	<div class="card-stats-item">
-						                      		<div class="font-weight-bold">TBG</div>
-						                      		<div class="card-stats-item-label">{{ $tbg }}</div>
-						                    	</div>
+						                    	@foreach($attendance as $att)
+													<div class="card-stats-item">
+							                      		<div class="font-weight-bold">{{ $att->major->alias }}</div>
+							                      		<div class="card-stats-item-label">{{ $att->present }}</div>
+							                    	</div>
+						                    	@endforeach
 						                  	</div>
 						                </div>
 					              	</div>

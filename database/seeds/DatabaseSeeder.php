@@ -10,6 +10,7 @@ use App\Today;
 use App\Event;
 use App\Major;
 use App\Rombel;
+use App\MajorAttendance;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +35,12 @@ class DatabaseSeeder extends Seeder
             Major::create([
                 'name' => $major[$i][0],
                 'alias' => $major[$i][1]
+            ]);
+
+            MajorAttendance::create([
+                'major_id' => $i + 1,
+                'present' => 0,
+                'date' => Carbon::now()
             ]);
         }
 
@@ -74,5 +81,6 @@ class DatabaseSeeder extends Seeder
             'color' => '#6777ef',
             'admin_id' => 1
         ]);
+
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendancesTable extends Migration
+class CreateMajorAttendancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('major_attendances', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('rombel_id')->unsigned();
             $table->integer('major_id')->unsigned();
             $table->integer('present');
-            $table->integer('not_present');
             $table->date('date');
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateAttendancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('major_attendances');
     }
 }
