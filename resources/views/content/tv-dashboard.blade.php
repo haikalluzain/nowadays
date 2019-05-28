@@ -172,7 +172,7 @@
 						                <div class="card-stats">
 						                  	<div class="card-stats-items">
 						                    	@foreach($attendance as $att)
-													<div class="card-stats-item">
+													<div class="col pb-0 text-center">
 							                      		<div class="font-weight-bold">{{ $att->major->alias }}</div>
 							                      		<div class="card-stats-item-label">{{ $att->present }}</div>
 							                    	</div>

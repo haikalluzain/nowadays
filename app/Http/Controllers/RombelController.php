@@ -93,8 +93,11 @@ class RombelController extends Controller
     public function destroy(Rombel $rombel)
     {
         $cek = Attendance::where('rombel_id',$rombel->id)->count();
+        $cekrombel = Rombel::where(['major_id'=>$rombel->major_id,'grade'=>$rombel->grade])->where('code','>',$rombel->code)->count();
         if ($cek > 0) {
             return redirect()->route('rombel.index')->withError('Data rombel telah digunakan sehingga tidak dapat dihapus!');
+        }elseif($cekrombel > 0){
+            return redirect()->route('rombel.index')->withError('Ditemukan data rombel lebih besar sehingga tidak dapat dihapus!');
         }else{
             $rombel->delete();
             return redirect()->route('rombel.index')->with('message','menghapus rombel');

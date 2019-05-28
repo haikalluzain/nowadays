@@ -73,7 +73,7 @@ class AttendanceController extends Controller
         $absen->present = $total - $request->not_present;
         $absen->save();
 
-        $cek = MajorAttendance::where('date',$now);
+        $cek = MajorAttendance::where(['date'=>$now,'major_id'=>$rombel->major_id]);
         if ($cek->count() == 0) {
             MajorAttendance::create([
                 'major_id' => $rombel->major_id,
@@ -81,7 +81,7 @@ class AttendanceController extends Controller
                 'date' => $now
             ]);
         }else{
-            $att = MajorAttendance::find($cek->first()->id);
+            $att = MajorAttendance::find($rombel->major_id);
             $att->update([
                 'present' => $att->present + $total - $request->not_present
             ]);

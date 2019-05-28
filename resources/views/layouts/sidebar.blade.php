@@ -14,7 +14,7 @@
       <li class="menu-header">Dashboard</li>
       <li class="{{ ($route == 'dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
 
-      <li class="{{ ($route == 'dashboard.full') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard.full') }}"><i class="fas fa-tv"></i> <span>Full-tv Dashboard</span></a></li>
+      <li class="{{ ($route == 'dashboard.full') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard.full') }}" target="blank"><i class="fas fa-tv"></i> <span>Full-tv Dashboard</span></a></li>
 
       <li class="menu-header">Content</li>
       {{-- <li class="{{ ($route == 'admin') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin') }}"><i class="far fa-user"></i> <span>Admin</span></a></li> --}}
