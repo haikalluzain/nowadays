@@ -52,6 +52,7 @@ class TodayController extends Controller
     {
         $data = new Today($request->all());
         $data->admin_id = auth('api')->user()->id;
+        $data->date = Carbon::now();
         $data->save();
 
         if ($data) {

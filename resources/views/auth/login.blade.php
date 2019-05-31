@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-100 bg-primary" style="height: 100vh; position: fixed;">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-3">
+            <div class="col-10 col-sm-8 col-md-5 col-lg-4 col-xl-3">
 
                 <div class="login-brand mt-4 mb-4">
                     <img src="{{ asset('image/logo/logo_transparent.png') }}" alt="logo" width="100" class="shadow bg-white p-2 rounded-circle">
