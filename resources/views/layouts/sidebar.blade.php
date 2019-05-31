@@ -29,7 +29,7 @@
         </ul>
       </li>
 
-      <li class="dropdown {{ ($route == 'major.index' || $route == 'rombel.index' || $route == 'attendance.index') ? 'active' : '' }}">
+      <li class="dropdown {{ ($route == 'major.index' || $route == 'rombel.index' || $route == 'attendance.index' || $route == 'major.edit' || $route == 'rombel.edit' || $route == 'attendance.edit' || $route == 'major.create' || $route == 'rombel.create' || $route == 'attendance.create') ? 'active' : '' }}">
         <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Absensi</span></a>
         <ul class="dropdown-menu">
           <li class="{{ ($route == 'major.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('major.index') }}">Jurusan</a></li>
