@@ -51,7 +51,7 @@ class TodayController extends Controller
     public function store(Request $request)
     {
         $data = new Today($request->all());
-        $data->admin_id = 1;
+        $data->admin_id = auth('api')->user()->id;
         $data->date = Carbon::now();
         $data->save();
 
