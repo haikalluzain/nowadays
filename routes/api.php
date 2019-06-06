@@ -13,8 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'auth:api', 'prefix' => 'user'], function () {
+	Route::post('show', 'Api\Auth\UserController@show');
+});
+
+Route::group(['prefix' => 'user'], function () {
+	Route::post('login', 'Api\Auth\UserController@login');
+	Route::post('register', 'Api\Auth\UserController@register');
+	Route::post('logout', 'Api\Auth\UserController@logout');
 });
 
 Route::group(['prefix' => 'event'], function() {
@@ -33,9 +39,9 @@ Route::group(['prefix' => 'today'], function() {
 	Route::get('what', 'TodayController@what');
 });
 
-Route::group(['prefix' => 'user'], function() {
-	Route::get('show', 'UserController@show_admin');
-	Route::post('add-admin', 'UserController@store_admin');
-});
+// Route::group(['prefix' => 'user'], function() {
+// 	Route::get('show', 'UserController@show_admin');
+// 	Route::post('add-admin', 'UserController@store_admin');
+// });
 
 Route::post('rombel/check','RombelController@rombel');

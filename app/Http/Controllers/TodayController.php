@@ -56,9 +56,9 @@ class TodayController extends Controller
         $data->save();
 
         if ($data) {
-            $response = ['code'=>200,'status'=>'success'];
+            $response = ['code'=>200,'message'=>'Success create an activity'];
         }else{
-            $response = ['code'=>201,'status'=>'error'];
+            $response = ['code'=>201,'message'=>'Something went wrong!'];
         }
 
         return response()->json($response);
