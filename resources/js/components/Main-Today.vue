@@ -164,7 +164,7 @@
                     this.errors_ = true; 
                     this.er_message = "Waktu selesai tidak boleh sebelum dari waktu mulai";
                 }else{
-                    axios.post('/nowadays/public/api/today/insert', this.$data.today)
+                    axios.post('/api/today/insert', this.$data.today)
                     .then((response) => {
                         if (response.data.code == 200) {
                             iziToast.success({
@@ -184,7 +184,7 @@
                 this.show_edit = -1;
             },
             update() {
-                axios.post('/nowadays/public/api/today/update', this.$data.edit)
+                axios.post('/api/today/update', this.$data.edit)
                     .then((response) => {
                         if (response.data.code == 200) {
                             iziToast.success({
@@ -209,7 +209,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axios.delete('/nowadays/public/api/today/delete/' + id)
+                        axios.delete('/api/today/delete/' + id)
                         .then((response) => {
                             if (response.data.code == 200) {
                                 swal('Berhasil', 'Kegiatan berhasil dihapus', 'success');

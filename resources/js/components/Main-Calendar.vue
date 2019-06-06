@@ -235,7 +235,7 @@
 				eventSources: [
 					{
 						events(start, end, timezone, callback) {
-							axios.get('/nowadays/public/api/event/show', { timezone: timezone }).then((response) => {
+							axios.get('/api/event/show', { timezone: timezone }).then((response) => {
 								callback(response.data.events)
 								console.log(response.data.events)
 							})
@@ -425,7 +425,7 @@
 
 					this.errors.add({ field: 'desc', msg: 'Harap isi deskripsi dahulu!' })
 				} else {
-					axios.post('/nowadays/public/api/event/insert', this.$data.event)
+					axios.post('/api/event/insert', this.$data.event)
 						.then((response) => {
 							if (response.data.code == 200) {
 								$('#modal-add').modal('hide');
@@ -454,7 +454,7 @@
 				} else if (this.event.description == '') {
 					this.errors.add({ field: 'desc', msg: 'Harap isi deskripsi dahulu!' })
 				} else {
-					axios.post('/nowadays/public/api/event/update', this.$data.event)
+					axios.post('/api/event/update', this.$data.event)
 						.then((response) => {
 							if (response.data.code == 200) {
 								$('#modal-add').modal('hide');
@@ -480,7 +480,7 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
-							axios.delete('/nowadays/public/api/event/delete/' + id)
+							axios.delete('/api/event/delete/' + id)
 								.then((response) => {
 									if (response.data.code == 200) {
 										iziToast.success({
