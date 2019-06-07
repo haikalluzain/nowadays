@@ -14,7 +14,7 @@ class CreateTodaysTable extends Migration
     public function up()
     {
         Schema::create('todays', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('activity');
             $table->string('start');
             $table->string('end');
