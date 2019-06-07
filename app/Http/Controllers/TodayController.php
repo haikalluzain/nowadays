@@ -50,10 +50,13 @@ class TodayController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Today($request->all());
-        $data->admin_id = auth('api')->user()->id;
-        $data->date = Carbon::now();
-        $data->save();
+        $data = Today::create([
+            'activity' => $request->activity,
+            'start' => $request->start,
+            'end' => $request->end,
+            'admin_id' => auth('api')->user()->id,
+            'date' => Carbon::now()
+        ]);
 
         if ($data) {
             $response = ['code'=>200,'message'=>'Success create an activity'];
