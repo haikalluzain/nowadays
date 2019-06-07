@@ -28,19 +28,19 @@ export default {
 	},
 	actions: {
 		getTodays(context) {
-			axios.get('/Laravel/nowadays/public/api/today/all')
+			axios.get('/api/today/all')
 				.then((response) => {
 					context.commit('updateTodays', response.data.todays);
 				})
 		},
 		getAdmins(context) {
-			axios.get('/Laravel/nowadays/public/api/user/show')
+			axios.get('/api/user/show')
 				.then((response) => {
 					context.commit('updateAdmins', response.data.data);
 				})
 		},
 		getEvents(context) {
-			axios.get('/Laravel/nowadays/public/api/event/show')
+			axios.get('/api/event/show')
 				.then((response) => {
 					context.commit('updateEvents', response.data.events);
 				})

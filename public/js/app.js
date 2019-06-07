@@ -41751,17 +41751,17 @@ var index_esm = {
 	},
 	actions: {
 		getTodays: function getTodays(context) {
-			axios.get('/Laravel/nowadays/public/api/today/all').then(function (response) {
+			axios.get('/api/today/all').then(function (response) {
 				context.commit('updateTodays', response.data.todays);
 			});
 		},
 		getAdmins: function getAdmins(context) {
-			axios.get('/Laravel/nowadays/public/api/user/show').then(function (response) {
+			axios.get('/api/user/show').then(function (response) {
 				context.commit('updateAdmins', response.data.data);
 			});
 		},
 		getEvents: function getEvents(context) {
-			axios.get('/Laravel/nowadays/public/api/event/show').then(function (response) {
+			axios.get('/api/event/show').then(function (response) {
 				context.commit('updateEvents', response.data.events);
 			});
 		}
@@ -69967,7 +69967,7 @@ var moment = __webpack_require__(0);
                 this.errors_ = true;
                 this.er_message = "Waktu selesai tidak boleh sebelum dari waktu mulai";
             } else {
-                axios.post('/Laravel/nowadays/public/api/today/insert', this.$data.today).then(function (response) {
+                axios.post('/api/today/insert', this.$data.today).then(function (response) {
                     if (response.data.code == 200) {
                         iziToast.success({
                             title: 'Berhasil!',
@@ -69988,7 +69988,7 @@ var moment = __webpack_require__(0);
         update: function update() {
             var _this2 = this;
 
-            axios.post('/Laravel/nowadays/public/api/today/update', this.$data.edit).then(function (response) {
+            axios.post('/api/today/update', this.$data.edit).then(function (response) {
                 if (response.data.code == 200) {
                     iziToast.success({
                         title: 'Berhasil!',
@@ -70011,7 +70011,7 @@ var moment = __webpack_require__(0);
                 dangerMode: true
             }).then(function (willDelete) {
                 if (willDelete) {
-                    axios.delete('/Laravel/nowadays/public/api/today/delete/' + id).then(function (response) {
+                    axios.delete('/api/today/delete/' + id).then(function (response) {
                         if (response.data.code == 200) {
                             swal('Berhasil', 'Kegiatan berhasil dihapus', 'success');
                             _this3.$store.dispatch('getTodays');
