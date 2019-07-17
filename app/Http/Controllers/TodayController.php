@@ -22,7 +22,7 @@ class TodayController extends Controller
     public function index()
     {
         $now = date('Y-m-d');
-        $show = Today::latest()->get();
+        $show = Today::where('date', $now)->orderBy('start', 'asc')->get();
         return response()->json(['todays' => $show]);
     }
 

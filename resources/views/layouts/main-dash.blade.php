@@ -256,6 +256,12 @@
     <script src="{{ asset('dist/js/scripts.js') }}"></script>
     <script src="{{ asset('dist/js/custom.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+      // rename myToken as you like
+      window.myToken =  <?php echo json_encode([
+          'csrfToken' => csrf_token(),
+      ]); ?>
+      </script>
     <script type="text/javascript">
         $('.date-picker').datepicker({
           language: "id", 

@@ -49,7 +49,7 @@ class EventController extends Controller
                 'start' => request('start'),
                 'end' => request('end'),
                 'color' => request('color'),
-                'admin_id' => Auth::id(),
+                'admin_id' => auth('api')->user()->id,
             ]);
 
         if ($data) {
@@ -103,7 +103,7 @@ class EventController extends Controller
                 'start' => request('start'),
                 'end' => request('end'),
                 'color' => request('color'),
-                'admin_id' => Auth::id(),
+                'admin_id' => auth('api')->user()->id,
             ]);
 
             if ($go) {

@@ -30,9 +30,9 @@
                                             </a>
                                             <div class="dropdown-menu">
                                                 <div class="dropdown-title">Options</div>
-                                                <a href="#" @click="show_edit = index, edit.activity = today.activity, edit.start = today.start, edit.end = today.end, edit.id = today.id" class="dropdown-item has-icon"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                <a @click="show_edit = index, edit.activity = today.activity, edit.start = today.start, edit.end = today.end, edit.id = today.id" class="dropdown-item has-icon"><i class="fas fa-pencil-alt"></i> Edit</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" class="dropdown-item has-icon text-danger" @click="hapus(today.id)"><i class="fas fa-trash-alt"></i> Hapus</a>
+                                                <a class="dropdown-item has-icon text-danger" @click="hapus(today.id)"><i class="fas fa-trash-alt"></i> Hapus</a>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@
                     this.errors_ = true; 
                     this.er_message = "Waktu selesai tidak boleh sebelum dari waktu mulai";
                 }else{
-                    axios.post('/nowadays/public/api/today/insert', this.$data.today)
+                    axios.post('../api/today/insert', this.$data.today)
                     .then((response) => {
                         if (response.data.code == 200) {
                             iziToast.success({
@@ -184,7 +184,7 @@
                 this.show_edit = -1;
             },
             update() {
-                axios.post('/nowadays/public/api/today/update', this.$data.edit)
+                axios.post('../api/today/update', this.$data.edit)
                     .then((response) => {
                         if (response.data.code == 200) {
                             iziToast.success({
@@ -209,10 +209,14 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        axios.delete('/nowadays/public/api/today/delete/' + id)
+                        axios.delete('../api/today/delete/' + id)
                         .then((response) => {
                             if (response.data.code == 200) {
-                                swal('Berhasil', 'Kegiatan berhasil dihapus', 'success');
+                                iziToast.success({
+                                    title: 'Berhasil!',
+                                    message: 'kegiatan berhasil dihapus',
+                                    position: 'bottomLeft'
+                                });
                                 this.$store.dispatch('getTodays');
                                 this.reset();
                             }
