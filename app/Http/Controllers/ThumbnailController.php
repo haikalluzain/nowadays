@@ -62,7 +62,7 @@ class ThumbnailController extends Controller
             $filename = "thumbnail-".time().'.'.$extension;
             $file->move('image/thumbnail', $filename);
         }else{
-            $filename = "default_avatar.png";
+            $filename = "default-avatar.jpg";
         }
 
         $cek = Thumbnail::where('status','active')->count();
@@ -128,7 +128,9 @@ class ThumbnailController extends Controller
             $filename = "thumbnail-".time().'.'.$extension;
             $file->move('image/thumbnail', $filename);
 
-            unlink('image/thumbnail/'.$thumbnail->image);
+            if ($thumbnail->image != 'default-avatar.jpg') {
+                unlink('image/thumbnail/'.$thumbnail->image);
+            }
 
         }else{
             $filename = $thumbnail->image;
@@ -151,7 +153,9 @@ class ThumbnailController extends Controller
      */
     public function destroy(Thumbnail $thumbnail)
     {
-        unlink('image/thumbnail/'.$thumbnail->image);
+        if ($thumbnail->image != 'default-avatar.jpg') {
+           unlink('image/thumbnail/'.$thumbnail->image);
+        }
         $thumbnail->delete();
         return redirect()->route('thumbnail.index')->with('message','menghapus thumbnail');
     }

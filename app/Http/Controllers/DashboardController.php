@@ -41,6 +41,7 @@ class DashboardController extends Controller
     public function tv()
     {
         $now = date('Y-m-d');
+        Date::setLocale('id');
         $total = Rombel::sum('student_total');
         $cek = Attendance::where('date', $now);
         if ($cek->count() < 1) {

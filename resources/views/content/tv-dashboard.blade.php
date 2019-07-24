@@ -11,7 +11,7 @@
 
 	<div class="container-fluid col-auth">
 		<section>
-			<div class="card shadow ml-3">
+			<div class="card shadow">
 				<div class="row">
 	            	<div class="col-lg-6 pr-0">
 	              		<div class="card no-shadow card-custom-top mb-0 bg-primary" style="border-right:1px solid #dee2e6 !important;border-bottom: 1px solid #dee2e6 !important; border-radius: 0px 0px 0px 0px !important;">
@@ -25,7 +25,7 @@
 			                        <div class="carousel-inner" style="border-radius: 5px 0px 0px 0px !important;">
 			                            @if(count($thum) < 1)
 											<div class="carousel-item active">
-	                                            <img class="d-block" width="500" height="400" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
+	                                            <img class="d-block w-100" height="450" src="{{ asset('image/content/img06.jpg') }}" alt="First slide">
 	                                            <div class="carousel-caption custom-caption">
 	                                                <h5>Title</h5>
 	                                                <p>Description of the event</p>
@@ -34,7 +34,7 @@
 			                            @else
 											@foreach($thum as $field)
 		                                        <div class="carousel-item {{ $loop->index == 0 ? 'active': '' }}">
-		                                            <img class="d-block" width="500" height="400" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
+		                                            <img class="d-block w-100" height="450" src="{{ asset('image/thumbnail/'.$field->image) }}" alt="First slide">
 		                                            <div class="carousel-caption custom-caption">
 		                                                <h5>{{ $field->title }}</h5>
 		                                                <p>{{ str_limit($field->content, $limit = 200, $end = '...') }}</p>
@@ -122,12 +122,12 @@
 			                </div>
 			                <div class="card-body pt-0">             
 			                  	<div class="row">
-			                  		<div class="col-4 px-0 pl-1">
+			                  		<div class="col-4">
 				                  		<div class="card card-statistic-1 no-shadow">
 							                <div class="card-icon shadow card-icon-custom bg-primary">
 							                  	<i class="far fa-user"></i>
 							                </div>
-							                <div class="card-wrap px-0">
+							                <div class="card-wrap">
 							                  	<div class="card-header p-0 pt-3">
 							                   		<h4 class="text-small p-0">Total Siswa</h4>
 							                  	</div>
@@ -137,7 +137,7 @@
 							                </div>
 							            </div>
 				                  	</div>
-				                  	<div class="col-4 px-0 pl-1">
+				                  	<div class="col-4">
 				                  		<div class="card card-statistic-1 no-shadow">
 							                <div class="card-icon shadow card-icon-custom bg-success">
 							                  	<i class="far fa-user"></i>
@@ -152,7 +152,7 @@
 							                </div>
 							            </div>
 				                  	</div>
-				                  	<div class="col-4 px-0 px-1">
+				                  	<div class="col-4">
 				                  		<div class="card card-statistic-1 no-shadow">
 							                <div class="card-icon shadow card-icon-custom bg-danger">
 							                  	<i class="far fa-user"></i>

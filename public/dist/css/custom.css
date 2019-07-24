@@ -50,8 +50,8 @@
     padding: 20px 50px 20px 50px;
 }
 .card-custom-top{
-	min-height: 400px;
-	max-height: 400px;
+	min-height: 450px;
+	max-height: 450px;
 }
 .no-shadow{
 	box-shadow: none;
