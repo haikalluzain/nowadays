@@ -9,7 +9,7 @@
 
             <div class="col-lg-4 mt-3 text-center">
                     
-                <v-date-picker v-model="today.date" is-inline :formats="formats" :theme-styles='themeStyles' :pane-width="280" :select-attribute="attribute" :attributes="attrs" title-position="left" @dayclick="cek">
+                <v-date-picker v-model="today.date" is-inline :formats="formats" :theme-styles='themeStyles' :pane-width="280" :select-attribute="attribute" :attributes="mark" @dayclick="cek">
                 </v-date-picker>
             </div>
 
@@ -112,23 +112,11 @@
                 },
                 attrs: [
                     {
-                        highlight: {
-                            backgroundColor: '#d2e3fc',
-                        },
-                        contentStyle: {
-                            color: '#6777ef',
-                        },
-                        dates: [
-                            new Date(Date.now())
-                        ]
-                    },
-                    {
                         dot: {
                             backgroundColor: "#ffc107",
                         },
                         dates: [
-                            new Date(Date.now())
-                            
+                            new Date('2019-9-11'),
                         ]
                     }
                 ],
@@ -152,7 +140,26 @@
 
         computed: {
             todays() {
-                return this.$store.getters.todays;
+                let data = this.$store.getters.todays;
+                return data;
+            },
+            mark() {
+                let date = [];
+                let value = this.todays
+                if (value.length){
+                    for (var i = 0; i < value.length; i++){
+                        date.push(new Date(value[i].date))
+                    }
+                }
+                let data = [
+                    {
+                        dot: {
+                            backgroundColor: "#ffc107",
+                        },
+                        dates: date
+                    }
+                ]
+                return data
             },
             filtered() {
                 return this.todays.filter((todays) => {

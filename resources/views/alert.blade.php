@@ -1,7 +1,7 @@
 <form action="" method="POST" id="delete-form">
     @method('DELETE')
     @csrf
-</form> 
+</form>
 
 <form action="" id="confirm-form"></form>
 
@@ -46,8 +46,7 @@
 </script>
 @if(session('message'))
 <script>
-
-iziToast.success({
+    iziToast.success({
     title: 'Berhasil',
     message: "{{ session('message') }}",
     position : "topRight",
@@ -56,8 +55,7 @@ iziToast.success({
 </script>
 @elseif(session('error'))
 <script>
-
-iziToast.error({
+    iziToast.error({
     title: 'Whoops!',
     message: "{{ session('error') }}",
     position : "topRight",
@@ -69,8 +67,7 @@ iziToast.error({
 @if($errors->any())
 @foreach($errors->all() as $error)
 <script>
-
-iziToast.error({
+    iziToast.error({
     title: 'Whoops!',
     message: "{{ $error }}",
     position : "topRight",

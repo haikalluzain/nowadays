@@ -8,13 +8,6 @@ import Calendar from 'v-calendar';
 import 'v-calendar/lib/v-calendar.min.css';
 import FullCalendar from 'vue-full-calendar'
 
-// window.axios = require('axios');
-
-// window.axios.defaults.headers.common = {
-//     'X-Requested-With': 'XMLHttpRequest',
-//     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-// };
-
 Vue.use(FullCalendar)
 Vue.use(Calendar);
 Vue.use(Vuex);

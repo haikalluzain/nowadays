@@ -1854,39 +1854,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1919,13 +1886,7 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
             click: function click() {
               _this.openAddForm();
             }
-          } // list: {
-          // 	text: 'Event List',
-          // 	click: () => {
-          // 		this.openList()
-          // 	}
-          // }
-
+          }
         }
       },
       header: {
@@ -1933,15 +1894,6 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
         center: 'title',
         right: 'month'
       },
-      eventSources: [{
-        events: function events(start, end, timezone, callback) {
-          axios.get('../api/event/show', {
-            timezone: timezone
-          }).then(function (response) {
-            callback(response.data.events); // console.log(response.data.events)
-          });
-        }
-      }],
       event: {
         id: '',
         title: '',
@@ -2119,8 +2071,32 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
     addEvent: function addEvent() {
       var _this2 = this;
 
-      this.event.start = moment(this.event.start).format("YYYY-MM-DD") + ' 09:00:00';
-      this.event.end = moment(this.event.end).format("YYYY-MM-DD") + ' 09:00:00';
+      this.event.start = moment(this.event.start).format("YYYY-MM-DD");
+      this.event.end = moment(this.event.end).format("YYYY-MM-DD");
+
+      switch (this.event.color) {
+        case '#6777ef':
+          this.event.color = "primary";
+          break;
+
+        case '#fc544b':
+          this.event.color = "danger";
+          break;
+
+        case '#3abaf4':
+          this.event.color = "info";
+          break;
+
+        case '#ffa426':
+          this.event.color = "warning";
+          break;
+
+        case '#63ed7a':
+          this.event.color = "success";
+          break;
+      }
+
+      ;
 
       if (this.event.title == '') {
         this.errors.add({
@@ -2160,7 +2136,31 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       var _this3 = this;
 
       this.event.start = moment(this.event.start).format("YYYY-MM-DD");
-      this.event.end = moment(this.event.end).format("YYYY-MM-DD") + 'T09:00';
+      this.event.end = moment(this.event.end).format("YYYY-MM-DD");
+
+      switch (this.event.color) {
+        case '#6777ef':
+          this.event.color = "primary";
+          break;
+
+        case '#fc544b':
+          this.event.color = "danger";
+          break;
+
+        case '#3abaf4':
+          this.event.color = "info";
+          break;
+
+        case '#ffa426':
+          this.event.color = "warning";
+          break;
+
+        case '#63ed7a':
+          this.event.color = "success";
+          break;
+      }
+
+      ;
 
       if (this.event.title == '') {
         this.errors.add({
@@ -2225,25 +2225,40 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
   },
   computed: {
     events: function events() {
-      return this.$store.getters.events;
-    },
-    filtered: function filtered() {
-      var _this5 = this;
+      var data = this.$store.getters.events;
 
-      return this.events.filter(function (events) {
-        if (_this5.filter == '') {
-          return _this5.events;
-        } else if (events.title.match(_this5.filter)) {
-          return events.title.match(_this5.filter);
-        } else if (events.description.match(_this5.filter)) {
-          return events.description.match(_this5.filter);
-        } else if (events.start.match(_this5.filter)) {
-          var start = moment(events.start).locale('id').format('MMMM');
-          return events.start.match(_this5.filter);
-        } else {
-          return false;
+      if (data.length) {
+        for (var i = 0; i < data.length; i++) {
+          data[i].end += "T09:00";
+
+          switch (data[i].color) {
+            case 'primary':
+              data[i].color = "#6777ef";
+              break;
+
+            case 'danger':
+              data[i].color = "#fc544b";
+              break;
+
+            case 'info':
+              data[i].color = "#3abaf4";
+              break;
+
+            case 'warning':
+              data[i].color = "#ffa426";
+              break;
+
+            case 'success':
+              data[i].color = "#63ed7a";
+              $("#colorSuccess").prop('checked', true);
+              break;
+          }
+
+          ;
         }
-      });
+      }
+
+      return data;
     }
   }
 });
@@ -2383,6 +2398,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2391,26 +2412,26 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       return;
     }
 
-    this.$store.dispatch('getTodays');
+    this.$store.dispatch("getTodays");
   },
   data: function data() {
     return {
       moment: moment,
-      nowdate: moment().format('YYYY-MM-DD'),
+      nowdate: moment().format("YYYY-MM-DD"),
       today: {
-        id: '',
-        activity: '',
-        start: '06:00',
-        end: '07:00'
+        id: "",
+        activity: "",
+        start: "06:00",
+        end: "07:00"
       },
       edit: {
-        id: '',
-        activity: '',
-        start: '',
-        end: ''
+        id: "",
+        activity: "",
+        start: "",
+        end: ""
       },
       errors_: false,
-      er_message: '',
+      er_message: "",
       show_edit: -1
     };
   },
@@ -2419,25 +2440,27 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       var _this = this;
 
       this.errors_ = false;
-      var mulai = this.today.start;
-      var selesai = this.today.end;
+      var _this$$data$today = this.$data.today,
+          activity = _this$$data$today.activity,
+          start = _this$$data$today.start,
+          end = _this$$data$today.end;
 
-      if (this.today.activity == '') {
+      if (activity == "") {
         this.errors_ = true;
         this.er_message = "Harap isi kegiatan";
-      } else if (mulai.valueOf() > selesai.valueOf()) {
+      } else if (start.valueOf() > end.valueOf()) {
         this.errors_ = true;
         this.er_message = "Waktu selesai tidak boleh sebelum dari waktu mulai";
       } else {
-        axios.post('../api/today/insert', this.$data.today).then(function (response) {
+        axios.post("../api/today/insert", this.$data.today).then(function (response) {
           if (response.data.code == 200) {
             iziToast.success({
-              title: 'Berhasil!',
-              message: 'kegiatan berhasil ditambahkan',
-              position: 'topRight'
+              title: "Berhasil!",
+              message: "kegiatan berhasil ditambahkan",
+              position: "topRight"
             });
 
-            _this.$store.dispatch('getTodays');
+            _this.$store.dispatch("getTodays");
 
             _this.reset();
           }
@@ -2445,47 +2468,60 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       }
     },
     reset: function reset() {
-      this.today.activity = '';
+      this.today.activity = "";
       this.errors_ = false;
       this.show_edit = -1;
     },
     update: function update() {
       var _this2 = this;
 
-      axios.post('../api/today/update', this.$data.edit).then(function (response) {
-        if (response.data.code == 200) {
-          iziToast.success({
-            title: 'Berhasil!',
-            message: 'kegiatan berhasil diubah',
-            position: 'topRight'
-          });
+      var _this$$data$edit = this.$data.edit,
+          activity = _this$$data$edit.activity,
+          start = _this$$data$edit.start,
+          end = _this$$data$edit.end;
 
-          _this2.$store.dispatch('getTodays');
+      if (activity == "") {
+        this.errors_ = true;
+        this.er_message = "Harap isi kegiatan";
+      } else if (start.valueOf() > end.valueOf()) {
+        this.errors_ = true;
+        this.er_message = "Waktu selesai tidak boleh sebelum dari waktu mulai";
+      } else {
+        axios.post("../api/today/update", this.$data.edit).then(function (response) {
+          if (response.data.code == 200) {
+            iziToast.success({
+              title: "Berhasil!",
+              message: "kegiatan berhasil diubah",
+              position: "topRight"
+            });
 
-          _this2.reset();
-        }
-      });
+            _this2.$store.dispatch("getTodays");
+
+            _this2.reset();
+          }
+        });
+      }
     },
     hapus: function hapus(id) {
       var _this3 = this;
 
       swal({
-        title: 'Hapus',
-        text: 'Yakin ingin menghapus kegiatan?',
-        icon: 'warning',
+        title: "Hapus",
+        text: "Yakin ingin menghapus kegiatan?",
+        icon: "warning",
         buttons: true,
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          axios["delete"]('../api/today/delete/' + id).then(function (response) {
+          axios["delete"]("../api/today/delete/" + id).then(function (response) {
             if (response.data.code == 200) {
               iziToast.success({
-                title: 'Berhasil!',
-                message: 'kegiatan berhasil dihapus',
-                position: 'bottomLeft'
+                title: "Berhasil!",
+                message: "kegiatan berhasil dihapus",
+                position: "bottomLeft"
               });
 
-              _this3.$store.dispatch('getTodays');
+              _this3.$store.dispatch("getTodays");
 
               _this3.reset();
             }
@@ -2496,6 +2532,7 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
   },
   computed: {
     todays: function todays() {
+      console.log(this.$store.getters.todays);
       return this.$store.getters.todays;
     },
     filtered: function filtered() {
@@ -2627,18 +2664,10 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
         }
       },
       attrs: [{
-        highlight: {
-          backgroundColor: '#d2e3fc'
-        },
-        contentStyle: {
-          color: '#6777ef'
-        },
-        dates: [new Date(Date.now())]
-      }, {
         dot: {
           backgroundColor: "#ffc107"
         },
-        dates: [new Date(Date.now())]
+        dates: [new Date('2019-9-11')]
       }],
       formats: {
         input: 'YYYY-MM-DD'
@@ -2658,7 +2687,26 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
   },
   computed: {
     todays: function todays() {
-      return this.$store.getters.todays;
+      var data = this.$store.getters.todays;
+      return data;
+    },
+    mark: function mark() {
+      var date = [];
+      var value = this.todays;
+
+      if (value.length) {
+        for (var i = 0; i < value.length; i++) {
+          date.push(new Date(value[i].date));
+        }
+      }
+
+      var data = [{
+        dot: {
+          backgroundColor: "#ffc107"
+        },
+        dates: date
+      }];
+      return data;
     },
     filtered: function filtered() {
       var _this = this;
@@ -60716,7 +60764,7 @@ var render = function() {
                 attrs: {
                   config: _vm.config,
                   header: _vm.header,
-                  "event-sources": _vm.eventSources
+                  events: _vm.events
                 },
                 on: {
                   "event-render": _vm.eventRender,
@@ -60912,7 +60960,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\t" +
+                                "\n                                        " +
                                   _vm._s(
                                     _vm
                                       .moment(_vm.event.start)
@@ -60937,7 +60985,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\t" +
+                                "\n                                        " +
                                   _vm._s(
                                     _vm
                                       .moment(_vm.event.end)
@@ -60968,7 +61016,7 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.colorChange("#6777ef")
+                                    return _vm.colorChange("primary")
                                   }
                                 }
                               }),
@@ -60990,7 +61038,7 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.colorChange("#fc544b")
+                                    return _vm.colorChange("danger")
                                   }
                                 }
                               }),
@@ -61012,7 +61060,7 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.colorChange("#ffa426")
+                                    return _vm.colorChange("warning")
                                   }
                                 }
                               }),
@@ -61034,7 +61082,7 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.colorChange("#3abaf4")
+                                    return _vm.colorChange("info")
                                   }
                                 }
                               }),
@@ -61056,7 +61104,7 @@ var render = function() {
                                 },
                                 on: {
                                   click: function($event) {
-                                    return _vm.colorChange("#63ed7a")
+                                    return _vm.colorChange("success")
                                   }
                                 }
                               }),
@@ -61122,7 +61170,7 @@ var render = function() {
                           },
                           [
                             _c("i", { staticClass: "fas fa-trash" }),
-                            _vm._v("\n\t\t\t\t\t\t\t\tHapus")
+                            _vm._v("\n                                Hapus")
                           ]
                         )
                       ]
@@ -61164,7 +61212,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Save changes")]
+                          [_vm._v("Save\n                            changes")]
                         )
                   ])
                 ]
@@ -61203,10 +61251,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "section-lead" }, [
       _vm._v(
-        "\n\t\t\t\tPada halaman ini anda bisa membuat acara baru dengan menekan salah satu tanggal pada kalender atau tekan\n\t\t\t\ttombol "
+        "\n                Pada halaman ini anda bisa membuat acara baru dengan menekan salah satu tanggal pada kalender atau\n                tekan\n                tombol "
       ),
       _c("span", { staticClass: "text-primary" }, [_vm._v("Add Event")]),
-      _vm._v(" di bawah ini.\n\t\t\t")
+      _vm._v(" di bawah ini.\n            ")
     ])
   },
   function() {
@@ -61233,7 +61281,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "alert alert-info show fade" }, [
       _c("div", { staticClass: "alert-body" }, [
         _vm._v(
-          "\n\n\t\t\t\t\t\t\t\tPilih tanggal mulai dan selesai pada kalender!\n\t\t\t\t\t\t\t"
+          "\n\n                                Pilih tanggal mulai dan selesai pada kalender!\n                            "
         )
       ])
     ])
@@ -61274,7 +61322,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", { staticClass: "section-lead" }, [
       _vm._v(
-        "\n        Pada halaman ini anda bisa membuat daftar aktivitas pada hari ini. \n    "
+        "Pada halaman ini anda bisa membuat daftar aktivitas pada hari ini."
       )
     ]),
     _vm._v(" "),
@@ -61334,14 +61382,17 @@ var render = function() {
                                     "a",
                                     {
                                       staticClass: "dropdown-item has-icon",
+                                      attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
+                                          $event.preventDefault()
                                           ;(_vm.show_edit = index),
                                             (_vm.edit.activity =
                                               today.activity),
                                             (_vm.edit.start = today.start),
                                             (_vm.edit.end = today.end),
-                                            (_vm.edit.id = today.id)
+                                            (_vm.edit.id = today.id),
+                                            (_vm.errors_ = false)
                                         }
                                       }
                                     },
@@ -61349,7 +61400,9 @@ var render = function() {
                                       _c("i", {
                                         staticClass: "fas fa-pencil-alt"
                                       }),
-                                      _vm._v(" Edit")
+                                      _vm._v(
+                                        " Edit\n                                            "
+                                      )
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -61362,8 +61415,10 @@ var render = function() {
                                     {
                                       staticClass:
                                         "dropdown-item has-icon text-danger",
+                                      attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
+                                          $event.preventDefault()
                                           return _vm.hapus(today.id)
                                         }
                                       }
@@ -61372,7 +61427,9 @@ var render = function() {
                                       _c("i", {
                                         staticClass: "fas fa-trash-alt"
                                       }),
-                                      _vm._v(" Hapus")
+                                      _vm._v(
+                                        " Hapus\n                                            "
+                                      )
                                     ]
                                   )
                                 ])
@@ -61566,9 +61623,9 @@ var render = function() {
                                       _c("div", { staticClass: "alert-body" }, [
                                         _vm._m(1, true),
                                         _vm._v(
-                                          "\n\n                                            " +
+                                          "\n                                            " +
                                             _vm._s(_vm.er_message) +
-                                            "\n\n                                        "
+                                            "\n                                        "
                                         )
                                       ])
                                     ]
@@ -61695,7 +61752,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm.errors_
+                  _vm.errors_ && _vm.show_edit == -1
                     ? [
                         _c(
                           "div",
@@ -61707,9 +61764,9 @@ var render = function() {
                             _c("div", { staticClass: "alert-body" }, [
                               _vm._m(2),
                               _vm._v(
-                                "\n\n                                        " +
+                                "\n                                        " +
                                   _vm._s(_vm.er_message) +
-                                  "\n\n                                    "
+                                  "\n                                    "
                               )
                             ])
                           ]
@@ -61800,8 +61857,7 @@ var render = function() {
               "theme-styles": _vm.themeStyles,
               "pane-width": 280,
               "select-attribute": _vm.attribute,
-              attributes: _vm.attrs,
-              "title-position": "left"
+              attributes: _vm.mark
             },
             on: { dayclick: _vm.cek },
             model: {
@@ -75441,7 +75497,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getEvents: function getEvents(context) {
-      axios.get('../api/event/show').then(function (response) {
+      axios.get('../api/event/all').then(function (response) {
         context.commit('updateEvents', response.data.events);
       });
     }
@@ -75468,8 +75524,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/haikalfikriluzain/Data/Mamp/Now/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/haikalfikriluzain/Data/Mamp/Now/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/haikalfikriluzain/Data/Mamp/Nowadays/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/haikalfikriluzain/Data/Mamp/Nowadays/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
