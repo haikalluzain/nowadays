@@ -1854,6 +1854,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1989,8 +1990,19 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       this.openAddForm();
       this.dayEdit = true;
       this.event.id = event.id;
-      this.event.title = event.title;
-      this.event.description = event.description;
+
+      if (event.title == "( Tanpa Judul )") {
+        this.event.title = "";
+      } else {
+        this.event.title = event.title;
+      }
+
+      if (event.description == "( Tidak ada deskripsi )") {
+        this.event.description = "";
+      } else {
+        this.event.description = event.description;
+      }
+
       this.event.color = event.color;
 
       if (event.start._i == undefined) {
@@ -2096,41 +2108,34 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
           break;
       }
 
-      ;
+      ; // if (this.event.title == '') {
+      //     this.errors.add({
+      //         field: 'title',
+      //         msg: 'Harap isi title dahulu!'
+      //     })
 
       if (this.event.title == '') {
-        this.errors.add({
-          field: 'title',
-          msg: 'Harap isi title dahulu!'
-        });
-
-        if (this.event.description == '') {
-          this.errors.add({
-            field: 'desc',
-            msg: 'Harap isi deskripsi dahulu!'
-          });
-        }
-      } else if (this.event.description == '') {
-        this.errors.add({
-          field: 'desc',
-          msg: 'Harap isi deskripsi dahulu!'
-        });
-      } else {
-        axios.post('../api/event/insert', this.$data.event).then(function (response) {
-          if (response.data.code == 200) {
-            $('#modal-add').modal('hide');
-            iziToast.success({
-              title: 'Berhasil!',
-              message: 'kegiatan berhasil ditambahkan',
-              position: 'topRight'
-            });
-
-            _this2.refreshEvents();
-
-            _this2.fresh();
-          }
-        });
+        this.event.title = "-";
       }
+
+      if (this.event.description == '') {
+        this.event.description = "-";
+      }
+
+      axios.post('../api/event/insert', this.$data.event).then(function (response) {
+        if (response.data.code == 200) {
+          $('#modal-add').modal('hide');
+          iziToast.success({
+            title: 'Berhasil!',
+            message: 'kegiatan berhasil ditambahkan',
+            position: 'topRight'
+          });
+
+          _this2.refreshEvents();
+
+          _this2.fresh();
+        }
+      });
     },
     updateEvent: function updateEvent() {
       var _this3 = this;
@@ -2163,38 +2168,27 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       ;
 
       if (this.event.title == '') {
-        this.errors.add({
-          field: 'title',
-          msg: 'Harap isi title dahulu!'
-        });
-
-        if (this.event.description == '') {
-          this.errors.add({
-            field: 'desc',
-            msg: 'Harap isi deskripsi dahulu!'
-          });
-        }
-      } else if (this.event.description == '') {
-        this.errors.add({
-          field: 'desc',
-          msg: 'Harap isi deskripsi dahulu!'
-        });
-      } else {
-        axios.post('../api/event/update', this.$data.event).then(function (response) {
-          if (response.data.code == 200) {
-            $('#modal-add').modal('hide');
-            iziToast.info({
-              title: 'Berhasil!',
-              message: 'kegiatan berhasil diupdate',
-              position: 'topRight'
-            });
-
-            _this3.refreshEvents();
-
-            _this3.fresh();
-          }
-        });
+        this.event.title = "-";
       }
+
+      if (this.event.description == '') {
+        this.event.description = "-";
+      }
+
+      axios.post('../api/event/update', this.$data.event).then(function (response) {
+        if (response.data.code == 200) {
+          $('#modal-add').modal('hide');
+          iziToast.info({
+            title: 'Berhasil!',
+            message: 'kegiatan berhasil diupdate',
+            position: 'topRight'
+          });
+
+          _this3.refreshEvents();
+
+          _this3.fresh();
+        }
+      });
     },
     deleteEvent: function deleteEvent(id) {
       var _this4 = this;
@@ -2229,6 +2223,14 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
 
       if (data.length) {
         for (var i = 0; i < data.length; i++) {
+          if (data[i].title == "-") {
+            data[i].title = "( Tanpa Judul )";
+          }
+
+          if (data[i].description == "-") {
+            data[i].description = "( Tidak ada deskripsi )";
+          }
+
           data[i].end += "T09:00";
 
           switch (data[i].color) {
@@ -2532,7 +2534,7 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
   },
   computed: {
     todays: function todays() {
-      console.log(this.$store.getters.todays);
+      // console.log(this.$store.getters.todays);
       return this.$store.getters.todays;
     },
     filtered: function filtered() {
@@ -60828,7 +60830,7 @@ var render = function() {
                           staticClass: "form-control",
                           class: { "is-invalid": _vm.errors.has("title") },
                           attrs: {
-                            placeholder: "",
+                            placeholder: "Tambahkan title",
                             name: "title",
                             type: "text",
                             autofocus: ""
@@ -60881,7 +60883,11 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           class: { "is-invalid": _vm.errors.has("desc") },
-                          attrs: { id: "", name: "desc" },
+                          attrs: {
+                            id: "",
+                            name: "desc",
+                            placeholder: "Tambahkan deskripsi"
+                          },
                           domProps: { value: _vm.event.description },
                           on: {
                             input: function($event) {
@@ -75163,11 +75169,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
- // window.axios = require('axios');
-// window.axios.defaults.headers.common = {
-//     'X-Requested-With': 'XMLHttpRequest',
-//     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-// };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_full_calendar__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_calendar__WEBPACK_IMPORTED_MODULE_4___default.a);

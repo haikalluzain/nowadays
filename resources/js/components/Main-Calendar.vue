@@ -44,7 +44,7 @@
                             <div class="form-group row">
                                 <label class="font-weight-bold col-md-3">Title</label>
                                 <div class="col-md-9">
-                                    <input placeholder="" name="title" type="text" class="form-control"
+                                    <input placeholder="Tambahkan title" name="title" type="text" class="form-control"
                                         :class="{ 'is-invalid': errors.has('title') }" v-model="event.title" autofocus>
 
                                     <span class="invalid-feedback"
@@ -56,7 +56,8 @@
                                 <label class="font-weight-bold col-md-3">Description</label>
                                 <div class="col-md-9">
                                     <textarea id="" v-model="event.description" name="desc" class="form-control"
-                                        :class="{ 'is-invalid': errors.has('desc') }"></textarea>
+                                        :class="{ 'is-invalid': errors.has('desc') }"
+                                        placeholder="Tambahkan deskripsi"></textarea>
 
                                     <span class="invalid-feedback"
                                         v-show="errors.has('desc')">{{ errors.first('desc') }}</span>
@@ -296,8 +297,17 @@
                 this.openAddForm();
                 this.dayEdit = true;
                 this.event.id = event.id;
-                this.event.title = event.title;
-                this.event.description = event.description;
+                if (event.title == "( Tanpa Judul )") {
+                    this.event.title = "";
+                } else {
+                    this.event.title = event.title;
+                }
+
+                if (event.description == "( Tidak ada deskripsi )") {
+                    this.event.description = "";
+                } else {
+                    this.event.description = event.description;
+                }
                 this.event.color = event.color;
                 if (event.start._i == undefined) {
                     this.event.start = event.start;
@@ -379,53 +389,45 @@
                         this.event.color = "primary"
                         break;
                     case '#fc544b':
-                        this.event.color = "danger"                        
+                        this.event.color = "danger"
                         break;
                     case '#3abaf4':
-                        this.event.color = "info"                        
+                        this.event.color = "info"
                         break;
                     case '#ffa426':
-                        this.event.color = "warning"                        
+                        this.event.color = "warning"
                         break;
                     case '#63ed7a':
-                        this.event.color = "success"                        
+                        this.event.color = "success"
                         break;
                 };
+                // if (this.event.title == '') {
+                //     this.errors.add({
+                //         field: 'title',
+                //         msg: 'Harap isi title dahulu!'
+                //     })
+
                 if (this.event.title == '') {
-                    this.errors.add({
-                        field: 'title',
-                        msg: 'Harap isi title dahulu!'
-                    })
-
-                    if (this.event.description == '') {
-                        this.errors.add({
-                            field: 'desc',
-                            msg: 'Harap isi deskripsi dahulu!'
-                        })
-                    }
-                } else if (this.event.description == '') {
-
-                    this.errors.add({
-                        field: 'desc',
-                        msg: 'Harap isi deskripsi dahulu!'
-                    })
-                } else {
-                    axios.post('../api/event/insert', this.$data.event)
-                        .then((response) => {
-                            if (response.data.code == 200) {
-                                $('#modal-add').modal('hide');
-                                iziToast.success({
-                                    title: 'Berhasil!',
-                                    message: 'kegiatan berhasil ditambahkan',
-                                    position: 'topRight'
-                                });
-                                this.refreshEvents();
-                                this.fresh();
-
-                            }
-                        })
-
+                    this.event.title = "-"
                 }
+                if (this.event.description == '') {
+                    this.event.description = "-"
+                }
+
+                axios.post('../api/event/insert', this.$data.event)
+                    .then((response) => {
+                        if (response.data.code == 200) {
+                            $('#modal-add').modal('hide');
+                            iziToast.success({
+                                title: 'Berhasil!',
+                                message: 'kegiatan berhasil ditambahkan',
+                                position: 'topRight'
+                            });
+                            this.refreshEvents();
+                            this.fresh();
+
+                        }
+                    })
             },
             updateEvent() {
                 this.event.start = moment(this.event.start).format("YYYY-MM-DD");
@@ -435,51 +437,38 @@
                         this.event.color = "primary"
                         break;
                     case '#fc544b':
-                        this.event.color = "danger"                        
+                        this.event.color = "danger"
                         break;
                     case '#3abaf4':
-                        this.event.color = "info"                        
+                        this.event.color = "info"
                         break;
                     case '#ffa426':
-                        this.event.color = "warning"                        
+                        this.event.color = "warning"
                         break;
                     case '#63ed7a':
-                        this.event.color = "success"                        
+                        this.event.color = "success"
                         break;
                 };
                 if (this.event.title == '') {
-                    this.errors.add({
-                        field: 'title',
-                        msg: 'Harap isi title dahulu!'
-                    })
-
-                    if (this.event.description == '') {
-                        this.errors.add({
-                            field: 'desc',
-                            msg: 'Harap isi deskripsi dahulu!'
-                        })
-                    }
-                } else if (this.event.description == '') {
-                    this.errors.add({
-                        field: 'desc',
-                        msg: 'Harap isi deskripsi dahulu!'
-                    })
-                } else {
-                    axios.post('../api/event/update', this.$data.event)
-                        .then((response) => {
-                            if (response.data.code == 200) {
-                                $('#modal-add').modal('hide');
-                                iziToast.info({
-                                    title: 'Berhasil!',
-                                    message: 'kegiatan berhasil diupdate',
-                                    position: 'topRight'
-                                });
-                                this.refreshEvents();
-                                this.fresh();
-                            }
-                        })
-
+                    this.event.title = "-"
                 }
+                if (this.event.description == '') {
+                    this.event.description = "-"
+                }
+
+                axios.post('../api/event/update', this.$data.event)
+                    .then((response) => {
+                        if (response.data.code == 200) {
+                            $('#modal-add').modal('hide');
+                            iziToast.info({
+                                title: 'Berhasil!',
+                                message: 'kegiatan berhasil diupdate',
+                                position: 'topRight'
+                            });
+                            this.refreshEvents();
+                            this.fresh();
+                        }
+                    })
             },
             deleteEvent(id) {
                 swal({
@@ -513,6 +502,13 @@
                 let data = this.$store.getters.events;
                 if (data.length) {
                     for (var i = 0; i < data.length; i++) {
+                        if (data[i].title == "-") {
+                            data[i].title = "( Tanpa Judul )"
+                        }
+
+                        if (data[i].description == "-") {
+                            data[i].description = "( Tidak ada deskripsi )"
+                        }
                         data[i].end += "T09:00"
                         switch (data[i].color) {
                             case 'primary':

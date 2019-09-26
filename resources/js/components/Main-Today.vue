@@ -244,7 +244,7 @@
 
         computed: {
             todays() {
-                console.log(this.$store.getters.todays);
+                // console.log(this.$store.getters.todays);
                 return this.$store.getters.todays;
             },
             filtered() {

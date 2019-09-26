@@ -112,9 +112,9 @@ class EventController extends Controller
             ]);
 
             if ($go) {
-                $response = ['code' => 200, 'status' => 'success'];
+                $response = ['code' => 200, 'message' => 'Berhasil update event'];
             } else {
-                $response = ['code' => 401, 'status' => 'error'];
+                $response = ['code' => 401, 'message' => 'Gagal update event'];
             }
         }
 
