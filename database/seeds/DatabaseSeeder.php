@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Kegiatan belajar mengajar minggu genap',
             'start' => Carbon::now()->subDays(2),
             'end' => Carbon::now()->addDays(3),
-            'color' => '#6777ef',
+            'color' => 'primary',
             'admin_id' => 1
         ]);
 

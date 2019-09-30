@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 
 use App\Today;
@@ -10,10 +11,10 @@ use Auth;
 class TodayController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +22,7 @@ class TodayController extends Controller
      */
     public function index()
     {
-        $now = date('Y-m-d');
-        $show = Today::latest()->get();
+        $show = Today::orderBy('start', 'asc')->get();
         return response()->json(['todays' => $show]);
     }
 
@@ -38,8 +38,8 @@ class TodayController extends Controller
 
     public function what()
     {
-        $what = 'new Date(2019, 4, 5)';
-        return response()->json(['what'=>$what]);
+        $what = 'new Date(4009, 4, 5)';
+        return response()->json(['what' => $what]);
     }
 
     /**
@@ -59,9 +59,9 @@ class TodayController extends Controller
         ]);
 
         if ($data) {
-            $response = ['code'=>200,'message'=>'Success create an activity'];
-        }else{
-            $response = ['code'=>201,'message'=>'Something went wrong!'];
+            $response = ['code' => 200, 'message' => 'Success create an activity'];
+        } else {
+            $response = ['code' => 400, 'message' => 'Something went wrong!'];
         }
 
         return response()->json($response);
@@ -103,7 +103,7 @@ class TodayController extends Controller
     {
         $id = $request->id;
 
-        $go = Today::where('id',$id)->update([
+        $go = Today::where('id', $id)->update([
             'activity' => request('activity'),
             'start' => request('start'),
             'end' => request('end'),
@@ -112,9 +112,9 @@ class TodayController extends Controller
         ]);
 
         if ($go) {
-            $response = ['code'=>200,'status'=>'success'];
-        }else{
-            $response = ['code'=>201,'status'=>'error'];
+            $response = ['code' => 200, 'message' => 'Success update activity'];
+        } else {
+            $response = ['code' => 400, 'message' => 'Something went wrong!'];
         }
 
         return response()->json($response);
@@ -128,13 +128,21 @@ class TodayController extends Controller
      */
     public function destroy($id)
     {
-        $cek = Today::findOrFail($id);
-
-        if($cek->delete()){
-            $response = ['status'=>'success','code'=>200];
-        }else{
-            $response = ['status'=>'error','code'=>201];
+        // $id = $request->id;
+        $data = array_filter(explode(',', $id));
+        if (count($data) > 1) {
+            for ($i = 0; $i  < count($data); $i++) {
+                $today = Today::find($data[$i]);
+                $today->delete();
+            }
+            $response = ['code' => 200, 'message' => 'Berhasil menghapus activity'];
+        } else {
+            $today = Today::find($id);
+            if ($today->delete()) {
+                $response = ['code' => 200, 'message' => 'Berhasil menghapus activity'];
+            }
         }
+
         return response()->json($response);
     }
 }

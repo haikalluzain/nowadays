@@ -8,7 +8,7 @@
         </div>
 
         <div class="section-body">
-			<add-admin/>	
+			<add-admin></add-admin>	
         </div>
     </section>
 @endsection

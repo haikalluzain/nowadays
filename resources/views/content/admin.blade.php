@@ -2,6 +2,6 @@
 
 @section('dash-content')
 
-	<admin/>
+	<Admin></Admin>
 	
 @endsection

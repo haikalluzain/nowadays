@@ -9,10 +9,10 @@ use Auth;
 class EventController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +20,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('content.event-calendar', [
-            'show' => Event::all()
-        ]);
+        $show = Event::latest()->get();
+        return response()->json(['events' => $show]);
     }
 
     /**
@@ -44,18 +43,18 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $data = Event::create([
-                'title' => request('title'),
-                'description' => request('description'),
-                'start' => request('start'),
-                'end' => request('end'),
-                'color' => request('color'),
-                'admin_id' => auth('api')->user()->id,
-            ]);
+            'title' => request('title'),
+            'description' => request('description'),
+            'start' => request('start'),
+            'end' => request('end'),
+            'color' => request('color'),
+            'admin_id' => auth('api')->user()->id,
+        ]);
 
         if ($data) {
-            $response = ['code'=>200,'status'=>'success'];
-        }else{
-            $response = ['code'=>201,'status'=>'error'];
+            $response = ['code' => 200, 'message' => 'Berhasil menyimpan event'];
+        } else {
+            $response = ['code' => 401, 'message' => 'Something went wrong!'];
         }
 
         return response()->json($response);
@@ -67,10 +66,16 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
-        $show = Event::latest()->get();
-        return response()->json(['events' => $show]);
+        if ($request->month == 0 && $request->year == 0){
+            $show = Event::orderBy('start','asc')->get();
+            return response()->json(['events' => $show]);
+        }else{
+            $show = Event::whereMonth('start',$request->month)->whereYear('start',$request->year)->orderBy('start','asc')->get();
+            return response()->json(['events' => $show]);
+        }
+        
     }
 
     /**
@@ -94,24 +99,23 @@ class EventController extends Controller
     public function update(Request $request)
     {
         $id = $request->id;
-        $cek = Event::where('id',$id)->count();
+        $cek = Event::where('id', $id)->count();
 
         if ($cek = 1) {
-            $go = Event::where('id',$id)->update([
+            $go = Event::where('id', $id)->update([
                 'title' => request('title'),
                 'description' => request('description'),
                 'start' => request('start'),
                 'end' => request('end'),
                 'color' => request('color'),
-                'admin_id' => Auth::id(),
+                'admin_id' => auth('api')->user()->id,
             ]);
 
             if ($go) {
-                $response = ['code'=>200,'status'=>'success'];
-            }else{
-                $response = ['code'=>201,'status'=>'error'];
+                $response = ['code' => 200, 'message' => 'Berhasil update event'];
+            } else {
+                $response = ['code' => 401, 'message' => 'Gagal update event'];
             }
-
         }
 
         return response()->json($response);
@@ -125,13 +129,21 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        $cek = Event::findOrFail($id);
-
-        if($cek->delete()){
-            $response = ['status'=>'success','code'=>200];
-        }else{
-            $response = ['status'=>'error','code'=>201];
+        // $id = $request->id;
+        $data = array_filter(explode(',', $id));
+        if (count($data) > 1) {
+            for ($i = 0; $i  < count($data); $i++) {
+                $event = Event::find($data[$i]);
+                $event->delete();
+            }
+            $response = ['code' => 200, 'message' => 'Berhasil menghapus kegiatan'];
+        } else {
+            $event = Event::find($id);
+            if ($event->delete()) {
+                $response = ['code' => 200, 'message' => 'Berhasil menghapus kegiatan'];
+            }
         }
+
         return response()->json($response);
     }
 }
