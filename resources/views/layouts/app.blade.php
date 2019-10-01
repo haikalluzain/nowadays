@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +25,7 @@
     <link href="{{ asset('dist/css/components.css') }}" rel="stylesheet">
     <link href="{{ asset('dist/css/custom.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         @yield('content')
@@ -42,8 +44,8 @@
     <script src="{{ asset('dist/modules/calendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('dist/modules/calendar/locale-all.js') }}"></script>
     <script src="{{ asset('dist/js/stisla.js') }}"></script>
-  
-  
+
+
     <!-- Template JS File -->
     <script src="{{ asset('dist/js/scripts.js') }}"></script>
     <script src="{{ asset('dist/js/custom.js') }}"></script>
@@ -77,7 +79,7 @@
             events: function(start, end, timezone, callback) {
                 $.ajax({
                     url: "{{ url('/api/event/show') }}",
-                    method: 'get',
+                    method: 'post',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
@@ -86,8 +88,39 @@
                         end: end.unix(),
                     },
                         success: function(result){
-                            var event = [];
-                            $(result.events).each(function() {
+                            var event = [], data = [];
+                            data = result.events;
+                            if (data.length) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].title == "-") {
+                                        data[i].title = "( Tanpa Judul )"
+                                    }
+
+                                    if (data[i].description == "-") {
+                                        data[i].description = "( Tidak ada deskripsi )"
+                                    }
+                                    data[i].end += "T09:00"
+                                    switch (data[i].color) {
+                                        case 'primary':
+                                            data[i].color = "#6777ef"
+                                            break;
+                                        case 'danger':
+                                            data[i].color = "#fc544b"
+                                            break;
+                                        case 'info':
+                                            data[i].color = "#3abaf4"
+                                            break;
+                                        case 'warning':
+                                            data[i].color = "#ffa426"
+                                            break;
+                                        case 'success':
+                                            data[i].color = "#63ed7a"
+                                            $("#colorSuccess").prop('checked', true);
+                                            break;
+                                    };
+                                }
+                            }
+                            $(data).each(function() {
                                 event.push({
                                     title: $(this).attr('title'),
                                     description: $(this).attr('description'),
@@ -104,4 +137,5 @@
 
     </script>
 </body>
+
 </html>
