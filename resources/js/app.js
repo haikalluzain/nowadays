@@ -23,5 +23,5 @@ Vue.component('calendar', require('./components/Main-Calendar.vue').default);
 const app = new Vue({
     el: '#app',
     store,
-    
+
 });
