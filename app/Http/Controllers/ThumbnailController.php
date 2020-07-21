@@ -58,6 +58,8 @@ class ThumbnailController extends Controller
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension(); // getting image extension
+            $size = $file->getSize(); // getting image size
+
             $filename = "thumbnail-" . time() . '.' . $extension;
             $file->move('image/thumbnail', $filename);
         } else {

@@ -65,7 +65,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $value = $request->token;
+        $value = $request->bearerToken();
         if ($value) {
 
             $id = (new Parser())->parse($value)->getHeader('jti');

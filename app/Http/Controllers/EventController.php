@@ -68,14 +68,13 @@ class EventController extends Controller
      */
     public function show(Request $request)
     {
-        if ($request->month == 0 && $request->year == 0){
-            $show = Event::orderBy('start','asc')->get();
+        if ($request->month == 0 && $request->year == 0) {
+            $show = Event::orderBy('start', 'asc')->get();
             return response()->json(['events' => $show]);
-        }else{
-            $show = Event::whereMonth('start',$request->month)->whereYear('start',$request->year)->orderBy('start','asc')->get();
+        } else {
+            $show = Event::whereMonth('start', $request->month)->whereYear('start', $request->year)->orderBy('start', 'asc')->get();
             return response()->json(['events' => $show]);
         }
-        
     }
 
     /**

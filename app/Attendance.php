@@ -10,6 +10,6 @@ class Attendance extends Model
 
     public function rombel()
     {
-    	return $this->hasOne('App\Rombel','id','rombel_id');
+        return $this->hasOne('App\Rombel', 'id', 'rombel_id');
     }
 }

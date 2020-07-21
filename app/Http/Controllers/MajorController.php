@@ -16,7 +16,7 @@ class MajorController extends Controller
      */
     public function index()
     {
-        return view('content.major.index',[
+        return view('content.major.index', [
             'data' => Major::latest()->get()
         ]);
     }
@@ -39,13 +39,13 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'alias' => 'unique:majors'
         ]);
 
         Major::create($request->all());
 
-        return redirect()->route('major.index')->with('message','menyimpan jurusan');
+        return redirect()->route('major.index')->with('message', 'menyimpan jurusan');
     }
 
     /**
@@ -67,7 +67,7 @@ class MajorController extends Controller
      */
     public function edit(Major $major)
     {
-        return view('content.major.edit',[
+        return view('content.major.edit', [
             'data' => $major
         ]);
     }
@@ -81,9 +81,9 @@ class MajorController extends Controller
      */
     public function update(Request $request, Major $major)
     {
-        Major::find($major->id)->update($request->except('_method','_token'));
+        Major::find($major->id)->update($request->except('_method', '_token'));
 
-        return redirect()->route('major.index')->with('message','mengubah jurusan');
+        return redirect()->route('major.index')->with('message', 'mengubah jurusan');
     }
 
     /**
@@ -94,14 +94,13 @@ class MajorController extends Controller
      */
     public function destroy(Major $major)
     {
-        $cek = Rombel::where('major_id',$major->id)->count();
-        $cekatt = MajorAttendance::where('major_id',$major->id)->count();
+        $cek = Rombel::where('major_id', $major->id)->count();
+        $cekatt = MajorAttendance::where('major_id', $major->id)->count();
         if ($cek > 0 || $cekatt > 0) {
-            return redirect()->route('major.index')->withError('Data jurusan telah digunakan sehingga tidak dapat dihapus!');    
-        }else{
+            return redirect()->route('major.index')->withError('Data jurusan telah digunakan sehingga tidak dapat dihapus!');
+        } else {
             $major->delete();
-            return redirect()->route('major.index')->with('message','menghapus jurusan');    
+            return redirect()->route('major.index')->with('message', 'menghapus jurusan');
         }
-        
     }
 }
