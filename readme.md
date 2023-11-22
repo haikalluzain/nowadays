@@ -3,10 +3,7 @@
   <br>
 </h1>
 
-## Install
-
-### Development
-
+### Install
 #### Requirements
 
 - Install Git
