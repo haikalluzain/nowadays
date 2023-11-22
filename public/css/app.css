@@ -6717,9 +6717,13 @@ a.close.disabled {
   vertical-align: text-top !important;
 }
 
-.bg-primary {
+/* .bg-primary {
   background-color: #3490dc !important;
-}
+} */
+
+.bg-primary {
+    background-color: #1976d2 !important;
+  }
 
 a.bg-primary:hover,
 a.bg-primary:focus,

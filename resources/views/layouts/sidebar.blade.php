@@ -1,4 +1,4 @@
-<?php 
+<?php
   $route = Route::currentRouteName();
 ?>
 
@@ -17,7 +17,7 @@
       <li class="{{ ($route == 'dashboard.full') ? 'active' : '' }}"><a class="nav-link" href="{{ route('dashboard.full') }}" target="blank"><i class="fas fa-tv"></i> <span>Full-tv Dashboard</span></a></li>
 
       <li class="menu-header">Content</li>
-      
+
       <li class="dropdown {{ ($route == 'today.list' || $route == 'today.date') ? 'active' : '' }}">
         <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Jadwal</span></a>
         <ul class="dropdown-menu">
@@ -38,7 +38,7 @@
       <li class="{{ ($route == 'event.calendar') ? 'active' : '' }}"><a class="nav-link" href="{{ route('event.calendar') }}"><i class="far fa-calendar-alt"></i> <span>Kalender Kegiatan</span></a></li>
 
       <li class="{{ ($route == 'thumbnail.index' || $route == 'thumbnail.create' || $route == 'thumbnail.edit' || $route == 'thumbnail.active' || $route == 'thumbnail.inactive') ? 'active' : '' }}"><a class="nav-link" href="{{ route('thumbnail.index') }}"><i class="far fa-image"></i> <span>Thumbnail</span></a></li>
-      
+
     </ul>
   </aside>
 </div>

@@ -12,7 +12,7 @@
             var href = $(this).attr('href');
             swal({
                 title: "Hapus data ?",
-                text: "Data yang di hapus tidak dapat di kembalikan!", 
+                text: "Data yang di hapus tidak dapat di kembalikan!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -31,7 +31,7 @@
             var content = $(this).attr('content');
             swal({
                 title: title,
-                text: content, 
+                text: content,
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

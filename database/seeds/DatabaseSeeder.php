@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name'=>'Haikal Fikri Luzain',
-            'email'=>'haikalfikriluzain@gmail.com',
+            'email'=>'haikal@gmail.com',
             'password'=>Hash::make('123456'),
         ]);
 
         $major = [['Rekayasa Perangkat Lunak','RPL'],['Otomatisasi Teknik Kerja Perkantoran','OTKP'],['Teknik Komputer dan Jaringan','TKJ'],['Bisnis Daring dan Pemasaran','BDP'],['Multimedia','MMD'],['Perhotelan','HTL'],['Tata Boga','TBG']];
-        for ($i=0; $i < 7; $i++) { 
+        for ($i=0; $i < 7; $i++) {
             Major::create([
                 'name' => $major[$i][0],
                 'alias' => $major[$i][1]
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
     		['06:50','07:30'],['07:30','13:30'],['08:30','15:00'],['13:30','14:00'],['07:30','14:30']
     	];
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 5; $i++) {
         	Today::create([
         		'activity' => $act[$i],
         		'start' => $time[$i][0],

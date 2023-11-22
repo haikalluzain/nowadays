@@ -5,7 +5,7 @@
 
 	<nav class="navbar navbar-custom bg-primary justify-content-center">
         <a class="navbar-brand" href="#"></a>
-        <a class="navbar-brand" href="#"><img class="pb-1" width="55" height="40" src="{{ asset('image/logo/logo-white.png') }}" alt=""> <span class="ml-1">Wikrama Nowadays</span></a>
+        <a class="navbar-brand" href="#"><img class="pb-1" width="55" height="40" src="{{ asset('image/logo/logo-white.png') }}" alt=""> <span class="ml-1">Nowadays</span></a>
         <a class="navbar-brand" href="#"></a>
     </nav>
 
@@ -65,9 +65,9 @@
 			                        <h4>{{ $now }}</h4>
 			                    </div>
 			                </div>
-			                <div class="card-body pt-0" id="top-5-scroll">             
+			                <div class="card-body pt-0" id="top-5-scroll">
 			                  	<ul class="list-unstyled list-unstyled-border">
-			                    	
+
 		                        	@if(count($today) < 1)
 
 		                        		<div class="alert alert-light">Belum ada jadwal hari ini</div>
@@ -76,7 +76,7 @@
 
 		                        		@foreach($today as $data)
 
-										
+
 											<li class="container-fluid px-0 py-2 my-1">
 				                          		<div class="form-group row mb-0">
 				                            		<div class="col-3 pr-0">
@@ -91,7 +91,7 @@
 		                        		@endforeach
 
 			                        @endif
-			                                         	
+
 			                  	</ul>
 			                </div>
 		              	</div>
@@ -106,7 +106,7 @@
 			                        <h4>Minggu, 3 Februari 2019</h4>
 			                    </div>
 			                </div> --}}
-			                <div class="card-body pt-4">             
+			                <div class="card-body pt-4">
 			                  	<div id="fullcalendar"></div>
 			                </div>
 		              	</div>
@@ -120,7 +120,7 @@
 			                        <h4>Minggu, 3 Februari 2019</h4>
 			                    </div> --}}
 			                </div>
-			                <div class="card-body pt-0">             
+			                <div class="card-body pt-0">
 			                  	<div class="row">
 			                  		<div class="col-4">
 				                  		<div class="card card-statistic-1 no-shadow">
@@ -180,7 +180,7 @@
 						                  	</div>
 						                </div>
 					              	</div>
-			                  	</div>   
+			                  	</div>
 			                </div>
 		              	</div>
 		            </div>

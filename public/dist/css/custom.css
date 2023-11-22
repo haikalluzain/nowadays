@@ -2,7 +2,7 @@
  *
  * You can write your CSS code here, DO NOT touch the default JavaScript file
  * because it will make it harder for you to update.
- * 
+ *
  */
 
 /*# sourceMappingURL=custom.css.map */
@@ -75,9 +75,10 @@
     font-size: 20px;
 }
 .col-auth {
-    height: 100vh; 
+    height: 100vh;
     position: fixed;
-    background: #6777ef;
+    background: #1976d2;
+    /* background: #6777ef; */
 }
 .col-spacer-auth {
     pointer-events: none;
@@ -131,7 +132,7 @@
 
 .spinner {
     width: 70px;
-    margin: 0 auto; 
+    margin: 0 auto;
 
 }
 
@@ -162,10 +163,10 @@
 }
 
 @keyframes sk-bouncedelay {
-  0%, 80%, 100% { 
+  0%, 80%, 100% {
     -webkit-transform: scale(0);
     transform: scale(0);
-  } 40% { 
+  } 40% {
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
   }

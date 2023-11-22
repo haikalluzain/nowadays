@@ -8,13 +8,13 @@
       <h1>Absensi</h1>
     </div>
 
-    
+
     <div class="section-body">
         <h2 class="section-title">Buat Absensi</h2>
         <p class="section-lead">
             Pada halaman ini anda bisa melakukan penambahan data absensi
         </p>
-    
+
       <div class="card">
       <form action="{{ route('attendance.store') }}" method="post">
         @csrf
